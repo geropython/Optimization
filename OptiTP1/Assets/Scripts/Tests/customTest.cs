@@ -15,6 +15,6 @@ public class customTest : ManagedUpdateBehaviourUI
 
    private void Print()
    {
-      print(text);
+      Logging.Log(text);
    }
 }

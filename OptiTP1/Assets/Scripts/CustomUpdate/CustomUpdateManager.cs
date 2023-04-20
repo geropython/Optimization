@@ -17,7 +17,7 @@ public class CustomUpdateManager : MonoBehaviour
 
     private void Update()
     {
-       UpdateVersion1();
+       UpdateVersion2();
     }
 
     private void UpdateVersion1()
@@ -37,6 +37,8 @@ public class CustomUpdateManager : MonoBehaviour
         _tempTime = 0;
     }
 
+    // Se puede optimizar la version 1 usando el metodo a continuacion
+    // la optimizacion seria que en ningun momento tiene que guardar una variable extra (_tempTime) ahorrando espacio en memoria
     private void UpdateVersion2()
     {
         if (Time.frameCount % FRAME_TARGET != 0) return;

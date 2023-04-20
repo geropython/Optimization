@@ -16,7 +16,7 @@ public class CustomUpdateManagerUI : MonoBehaviour
 
     private void Update()
     {
-        UpdateVersion1();
+        UpdateVersion2();
     }
 
     private void UpdateVersion1()
