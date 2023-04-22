@@ -1,54 +1,41 @@
+using System.Runtime;
 using UnityEngine;
 
 namespace Tomi.TomiScripts
 {
     public class PlayerController : MonoBehaviour
     {
-        //Variables de Movimiento
-        [SerializeField] private float speed = 5.0f;
+        [SerializeField] private float speed; // velocidad del tanque
+        [SerializeField] private GameObject tankPrefab; // prefab del tanque
+        [SerializeField] private Transform spawnPoint; // punto de spawn del tanque
+        [SerializeField] private Rigidbody rb;
 
-        //Variables de SpawnPoint
-        [SerializeField] private Transform spawnPoint;
-        private Rigidbody _playerRigidbody;
-
-        //Variables básicas
-        private Transform _playerTransform;
-
-        private void Start()
+        private void Update()
         {
-            //Obtengo los componentes Transform y RigidBody Del Player.
-            _playerTransform = GetComponent<Transform>();
-            _playerRigidbody = GetComponent<Rigidbody>();
+            var input = Input.GetAxis(Input.GetButton("Horizontal")
+                ? "Horizontal"
+                : "Vertical"); // obtiene el input horizontal o vertical correspondiente
+            var direction = Vector3.zero;
 
-            //Asigno la posición del spawnPoint al transform del jugador al inicio.
-            if (spawnPoint != null)
-            {
-                _playerTransform.position = spawnPoint.position;
-                _playerTransform.rotation = spawnPoint.rotation;
-            }
+            // establece la dirección en la que se mueve el tanque
+            if (Input.GetButton("Horizontal"))
+                direction = new Vector3(input, 0, 0);
+            else if (Input.GetButton("Vertical")) direction = new Vector3(0, 0, input);
+            // Esto para que solo se puieda mover en 4 direcciones.
+            // mueve el tanque en la dirección adecuada (solo en horizontal o vertical)
+            rb.velocity = direction * speed;
+
+            // hace que el cañón del tanque mire en la dirección en la que se está moviendo
+            if (direction != Vector3.zero)
+                transform.GetChild(0)
+                    .LookAt(transform.position + direction); // suponiendo que el cañón es el primer hijo del tanque
         }
 
-        private void FixedUpdate()
+        //Dale, si. El POOL USAMOS EL DEL PROFE? O E DE UNITY?? SI, ESTA EN EL DISCORD.
+        public void SpawnTank()
         {
-            //Se obtiene el input del usuario ya sea con W,A,S,D  o Analógicos.
-            var horizontalInput = Input.GetAxisRaw("Horizontal");
-            var verticalInput = Input.GetAxisRaw("Vertical");
-
-            //Vector de movimiento que funciona con el input creado anteirormente.
-            var movement = new Vector3(horizontalInput, 0.0f, verticalInput);
-
-            // Si el vector de movimiento es  distinto de cero, rotamos el objeto del jugador en la dirección del movimiento.
-            if (movement != Vector3.zero) _playerTransform.rotation = Quaternion.LookRotation(movement);
-
-            // Movemos el PLayer en la dirección del vector de movimiento normalizado, multiplicado por la velocidad y el tiempo entre actualizaciones de física.
-            _playerRigidbody.MovePosition(_playerTransform.position +
-                                          movement.normalized * (speed * Time.fixedDeltaTime));
-        }
-
-        //Este método permite cambiar el spawnPoint desde el Editor.
-        public void SetSpawnPoint(Transform newSpawnPoint)
-        {
-            spawnPoint = newSpawnPoint;
+            // spawn del tanque en el punto designado desde el inspector
+            Instantiate(tankPrefab, spawnPoint.position, Quaternion.identity);
         }
     }
 }
