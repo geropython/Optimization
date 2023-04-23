@@ -617,7 +617,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: ENABLE_LOG
+    Standalone: ENABLE_LOG;ENABLE_UPDATE
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

@@ -1,41 +1,78 @@
-using System.Runtime;
 using UnityEngine;
 
-namespace Tomi.TomiScripts
+public class PlayerController : ManagedUpdateBehaviour
 {
-    public class PlayerController : MonoBehaviour
+    private PlayerModel _playerModel;
+    private Vector3 _direction = Vector3.zero;
+    private bool _prevStatusV;
+    private bool _prevStatusH;
+    private bool _moveH;
+
+    // Todas estas variables eran locales y se optimizo[?] al guardarlas de manera permanente
+    // ya que no se crean y destruyen en cada update
+    private float _v;
+    private float _h;
+    private bool _statusH;
+    private bool _statusV;
+
+    // cantidad de disparos por seg.
+    [SerializeField] private float fireRate = 1f;
+
+    // El tiempo en el que se disparó la última bala
+    private float _lastFireTime;
+
+    private void Awake()
     {
-        [SerializeField] private float speed; // velocidad del tanque
-        [SerializeField] private GameObject tankPrefab; // prefab del tanque
-        [SerializeField] private Transform spawnPoint; // punto de spawn del tanque
-        [SerializeField] private Rigidbody rb;
+        _playerModel = GetComponent<PlayerModel>();
+    }
 
-        private void Update()
+    public override void UpdateMe()
+    {
+        //MoveLogic();
+    }
+
+#if UNITY_EDITOR && ENABLE_UPDATE
+    private void Update()
+    {
+        MoveLogic();
+        ShootLogic();
+    }
+#endif
+
+    private void MoveLogic()
+    {
+        _v = Input.GetAxisRaw("Vertical");
+        _h = Input.GetAxisRaw("Horizontal");
+
+        _statusH = Input.GetButton("Horizontal");
+        _statusV = Input.GetButton("Vertical");
+
+        if (_statusH && !_prevStatusH)
+            _moveH = true;
+        if (_statusV && !_prevStatusV || !_statusH)
+            _moveH = false;
+
+        _direction = Vector3.zero;
+
+        if (_statusV && !_moveH)
         {
-            var input = Input.GetAxis(Input.GetButton("Horizontal")
-                ? "Horizontal"
-                : "Vertical"); // obtiene el input horizontal o vertical correspondiente
-            var direction = Vector3.zero;
-
-            // establece la dirección en la que se mueve el tanque
-            if (Input.GetButton("Horizontal"))
-                direction = new Vector3(input, 0, 0);
-            else if (Input.GetButton("Vertical")) direction = new Vector3(0, 0, input);
-            // Esto para que solo se puieda mover en 4 direcciones.
-            // mueve el tanque en la dirección adecuada (solo en horizontal o vertical)
-            rb.velocity = direction * speed;
-
-            // hace que el cañón del tanque mire en la dirección en la que se está moviendo
-            if (direction != Vector3.zero)
-                transform.GetChild(0)
-                    .LookAt(transform.position + direction); // suponiendo que el cañón es el primer hijo del tanque
+            _direction.z += _v;
+        }
+        else if (_statusH)
+        {
+            _direction.x += _h;
         }
 
-        //Dale, si. El POOL USAMOS EL DEL PROFE? O E DE UNITY?? SI, ESTA EN EL DISCORD.
-        public void SpawnTank()
-        {
-            // spawn del tanque en el punto designado desde el inspector
-            Instantiate(tankPrefab, spawnPoint.position, Quaternion.identity);
-        }
+        _prevStatusV = _statusV;
+        _prevStatusH = _statusH;
+
+        _playerModel.Move(_direction);
+    }
+
+    private void ShootLogic()
+    {
+        if (!Input.GetKey(KeyCode.Space) || !(Time.time > _lastFireTime + 1f / fireRate)) return;
+        _playerModel.Shoot();
+        _lastFireTime = Time.time;
     }
 }
