@@ -2,7 +2,7 @@ using UnityEngine;
 
 // Optimizacion[3] forzamos que siempre tenga rb asi no hay que hacer un check de null
 [RequireComponent(typeof(Rigidbody))]
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviour, IPoolableObject
 {
     // Optimizacion[1] guardo el valor en el prefab y no en el disparador
     [SerializeField] private float speed;
@@ -28,11 +28,6 @@ public class Projectile : MonoBehaviour
         _rb.velocity = dir * vel;
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        Destroy(gameObject);
-    }
-
     // private Vector3 _speed;
     //
     // public void Fire(Vector3 bulletSpeed)
@@ -43,4 +38,24 @@ public class Projectile : MonoBehaviour
     //     [3]if (rb != null)
     //          rb.velocity = _speed;
     // }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        Destroy(gameObject);
+    }
+
+    public void Deactivate()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Initialization()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
 }
