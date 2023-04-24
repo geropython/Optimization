@@ -1,3 +1,4 @@
+using Tomi.TomiScripts;
 using UnityEngine;
 
 // Optimizacion[3] forzamos que siempre tenga rb asi no hay que hacer un check de null
@@ -6,6 +7,7 @@ public class Projectile : MonoBehaviour, IPoolableObject
 {
     // Optimizacion[1] guardo el valor en el prefab y no en el disparador
     [SerializeField] private float speed;
+    [SerializeField] private float lifetime = 3f;
 
     // Optimizacion[2] guarda el rigidbody apenas spawnea la bala 
     private Rigidbody _rb;
@@ -13,6 +15,14 @@ public class Projectile : MonoBehaviour, IPoolableObject
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+    }
+
+    public void SetupProjectile(Vector3 pos, Quaternion rot, Vector3 forwardDir, string ownerTag)
+    {
+        gameObject.tag = ownerTag;
+        transform.SetPositionAndRotation(pos, rot);
+        Fire(forwardDir);
+        Invoke(nameof(PoolReturn), lifetime);
     }
 
     public void Fire(Vector3 dir)
@@ -39,9 +49,24 @@ public class Projectile : MonoBehaviour, IPoolableObject
     //          rb.velocity = _speed;
     // }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        if (gameObject.CompareTag("PlayerBullet"))
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                // Deal Damage to enemy
+            }
+        }
+        else if (gameObject.CompareTag("EnemyBullet"))
+        {
+            if (other.CompareTag("Player"))
+            {
+                // Deal Damage to player
+            }
+        }
+
+        PoolReturn();
     }
 
     public void Deactivate()
@@ -57,5 +82,12 @@ public class Projectile : MonoBehaviour, IPoolableObject
     public void Destroy()
     {
         Destroy(gameObject);
+    }
+
+    private void PoolReturn()
+    {
+        if (!gameObject.activeSelf) return;
+        GameManager.Instance.ProjectilePool.ReturnToPool(this);
+        CancelInvoke();
     }
 }

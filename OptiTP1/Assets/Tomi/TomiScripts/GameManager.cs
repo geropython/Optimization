@@ -7,15 +7,14 @@ namespace Tomi.TomiScripts
         //Variable del PLayerTank
         [SerializeField] private GameObject tankPrefab; // prefab del tanque
         [SerializeField] private Transform spawnPoint; // punto de spawn del tanque
-        
+
         // Singleton instance variable
         private static GameManager _instance;
 
         // Propiedad publica para acceder a la variable.
-        public static GameManager Instance
-        {
-            get { return _instance; }
-        }
+        public static GameManager Instance => _instance;
+
+        public ProjectileManagerv2 ProjectilePool { get; private set; }
 
         private void Awake()
         {
@@ -30,8 +29,14 @@ namespace Tomi.TomiScripts
                 _instance = this;
                 DontDestroyOnLoad(gameObject);
             }
-            
+
             SpawnTank();
+            ProjectilePool = GetComponent<ProjectileManagerv2>();
+        }
+
+        private void Start()
+        {
+            ProjectilePool.ResetPool();
         }
 
         public void SpawnTank()
@@ -39,6 +44,5 @@ namespace Tomi.TomiScripts
             // spawn del tanque en el punto designado desde el inspector
             Instantiate(tankPrefab, spawnPoint.position, Quaternion.identity);
         }
-        
     }
 }

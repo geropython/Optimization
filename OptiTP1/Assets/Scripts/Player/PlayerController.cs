@@ -53,19 +53,14 @@ public class PlayerController : ManagedUpdateBehaviour
 
         if (_statusH && !_prevStatusH)
             _moveH = true;
-        if (_statusV && !_prevStatusV || !_statusH)
+        if ((_statusV && !_prevStatusV) || !_statusH)
             _moveH = false;
 
         _direction = Vector3.zero;
 
         if (_statusV && !_moveH)
-        {
             _direction.z += _v;
-        }
-        else if (_statusH)
-        {
-            _direction.x += _h;
-        }
+        else if (_statusH) _direction.x += _h;
 
         _prevStatusV = _statusV;
         _prevStatusH = _statusH;
@@ -76,7 +71,7 @@ public class PlayerController : ManagedUpdateBehaviour
     private void ShootLogic()
     {
         if (!Input.GetKey(KeyCode.Space) || !(Time.time > _lastFireTime + 1f / fireRate)) return;
-        _playerModel.Shoot();
+        _playerModel.PoolShoot();
         _lastFireTime = Time.time;
     }
 }

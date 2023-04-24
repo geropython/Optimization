@@ -36,6 +36,13 @@ public class ProjectileManagerv2 : MonoBehaviour
 
     private Projectile InstantiateProjectile()
     {
-        return Instantiate(projectilePrefab);
+        var p = Instantiate(projectilePrefab);
+        p.gameObject.SetActive(false);
+        return p;
+    }
+
+    public void ResetPool()
+    {
+        _projectilePool.Clear();
     }
 }

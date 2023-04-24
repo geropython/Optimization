@@ -1,13 +1,15 @@
+using Tomi.TomiScripts;
 using UnityEngine;
 
 namespace Player
 {
     public class PlayerModel : MonoBehaviour
     {
+        private const string BULLET_TAG = "PlayerBullet";
         private Rigidbody _rb;
         [SerializeField] private float speed; // velocidad del tanque
-        
-       
+
+
         // Optimizacion[1] sabemos que ya es Projectile asi que no hay que hacer getcomponent
         // Optimizacion[2] sabemos que el getcomponent va a ser siempre no null 
         [SerializeField] private Projectile bulletPrefab;
@@ -39,7 +41,7 @@ namespace Player
             // Crea una nueva bala y establece su velocidad hacia atrás
             var bulletObject = Instantiate(bulletPrefab, shootingPoint.position, shootingPoint.rotation);
             bulletObject.Fire(shootingPoint.forward);
-            
+
             // // Obtiene una bala del objeto Pool
             // var bulletObject = projectilePool.GetObjectFromPool(shootingPoint.position, shootingPoint.rotation);
             //
@@ -49,11 +51,10 @@ namespace Player
             //     print("No se pudo obtener una bala del objeto Pool.");
             //     return;
             // }
-    
+
             // // Establece la velocidad de la bala hacia atrás
             // var bullet = bulletObject.GetComponent<Projectile>();
             // if (bullet != null) bullet.Fire(-shootingPoint.forward);
-            
         }
 
         // public void Shoot()
@@ -64,5 +65,10 @@ namespace Player
         //     [2]if (bullet != null) bullet.Fire(-shootingPoint.forward);
         // }
 
+        public void PoolShoot()
+        {
+            var bullet = GameManager.Instance.ProjectilePool.GetFromPool();
+            bullet.SetupProjectile(shootingPoint.position, shootingPoint.rotation, shootingPoint.forward, BULLET_TAG);
+        }
     }
 }
