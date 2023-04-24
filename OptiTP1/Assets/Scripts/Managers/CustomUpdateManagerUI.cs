@@ -24,7 +24,7 @@ public class CustomUpdateManagerUI : MonoBehaviour
         _tempTime += Time.deltaTime;
         if (!(_tempTime >= FRAME_TIME_30)) return;
         var count = _list.Length;
-        for (int i = 0; i < count; i++)
+        for (var i = 0; i < count; i++)
         {
             _list[i].UpdateMe();
         }

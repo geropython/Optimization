@@ -15,14 +15,12 @@ namespace Tomi.TomiScripts
         {
             _pooledProjectiles = new Queue<GameObject>();
 
-            for (int i = 0; i < poolSize; i++)
+            for (var i = 0; i < poolSize; i++)
             {
-                GameObject projectile = Instantiate(projectilePrefab);
+                var projectile = Instantiate(projectilePrefab);
                 projectile.SetActive(false);
                 _pooledProjectiles.Enqueue(projectile);
             }
         }
-    
-    
     }
 }

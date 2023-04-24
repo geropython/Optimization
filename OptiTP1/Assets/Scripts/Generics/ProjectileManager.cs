@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Pool;
-using UnityEngine.Serialization;
 
-public class ProjectileManagerv2 : MonoBehaviour
+public class ProjectileManager : MonoBehaviour
 {
     private IObjectPool<Projectile> _projectilePool;
     [SerializeField] private Projectile projectilePrefab;
@@ -16,9 +15,9 @@ public class ProjectileManagerv2 : MonoBehaviour
     {
         _projectilePool = new ObjectPool<Projectile>(
             InstantiateProjectile,
-            (obj) => obj.Initialization(),
-            (obj) => obj.Deactivate(),
-            (obj) => obj.Destroy(),
+            obj => obj.Initialization(),
+            obj => obj.Deactivate(),
+            obj => obj.Destroy(),
             true,
             10,
             10);

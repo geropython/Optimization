@@ -29,7 +29,7 @@ public class CustomUpdateManager : MonoBehaviour
         // Caching para luego utilizar este valor en el for 
         // Este valor se podria poner directo en el for, pero cada iteracion lo tendria que volver a calcular
         var count = _list.Length;
-        for (int i = 0; i < count; i++)
+        for (var i = 0; i < count; i++)
         {
             _list[i].UpdateMe();
         }

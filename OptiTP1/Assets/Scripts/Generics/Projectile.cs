@@ -17,12 +17,16 @@ public class Projectile : MonoBehaviour, IPoolableObject
         _rb = GetComponent<Rigidbody>();
     }
 
+    private void OnEnable()
+    {
+        Invoke(nameof(PoolReturn), lifetime);
+    }
+
     public void SetupProjectile(Vector3 pos, Quaternion rot, Vector3 forwardDir, string ownerTag)
     {
         gameObject.tag = ownerTag;
         transform.SetPositionAndRotation(pos, rot);
         Fire(forwardDir);
-        Invoke(nameof(PoolReturn), lifetime);
     }
 
     public void Fire(Vector3 dir)
