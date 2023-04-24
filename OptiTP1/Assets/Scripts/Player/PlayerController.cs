@@ -1,3 +1,6 @@
+using System;
+using Player;
+using Tomi.TomiScripts;
 using UnityEngine;
 
 public class PlayerController : ManagedUpdateBehaviour
@@ -25,6 +28,7 @@ public class PlayerController : ManagedUpdateBehaviour
     {
         _playerModel = GetComponent<PlayerModel>();
     }
+
 
     public override void UpdateMe()
     {
