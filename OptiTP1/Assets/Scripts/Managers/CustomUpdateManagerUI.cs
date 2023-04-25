@@ -16,7 +16,7 @@ public class CustomUpdateManagerUI : MonoBehaviour
 
     private void Update()
     {
-        UpdateVersion2();
+        UpdateVersion1();
     }
 
     private void UpdateVersion1()
@@ -24,10 +24,7 @@ public class CustomUpdateManagerUI : MonoBehaviour
         _tempTime += Time.deltaTime;
         if (!(_tempTime >= FRAME_TIME_30)) return;
         var count = _list.Length;
-        for (var i = 0; i < count; i++)
-        {
-            _list[i].UpdateMe();
-        }
+        for (var i = 0; i < count; i++) _list[i].UpdateMe();
 
         _tempTime = 0;
     }
@@ -36,9 +33,6 @@ public class CustomUpdateManagerUI : MonoBehaviour
     {
         if (Time.frameCount % FRAME_TARGET != 0) return;
         var count = _list.Length;
-        for (var i = 0; i < count; i++)
-        {
-            _list[i].UpdateMe();
-        }
+        for (var i = 0; i < count; i++) _list[i].UpdateMe();
     }
 }

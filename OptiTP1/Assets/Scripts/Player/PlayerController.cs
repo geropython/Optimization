@@ -32,14 +32,16 @@ public class PlayerController : ManagedUpdateBehaviour
 
     public override void UpdateMe()
     {
-        //MoveLogic();
-    }
-
-#if UNITY_EDITOR && ENABLE_UPDATE
-    private void Update()
-    {
         MoveLogic();
         ShootLogic();
+    }
+
+    // sacarle el ! a enable para usar el update comun
+#if UNITY_EDITOR && !ENABLE_UPDATE
+    private void Update()
+    {
+         MoveLogic();
+         ShootLogic();
     }
 #endif
 
