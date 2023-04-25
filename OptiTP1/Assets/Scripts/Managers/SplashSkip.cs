@@ -10,6 +10,7 @@ public class SplashSkip : ManagedUpdateBehaviourUI
     void Start()
     {
         // Hides the cursor...
+
         Cursor.visible = false;
     }
     //public override void UpdateMe()

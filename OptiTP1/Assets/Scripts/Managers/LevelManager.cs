@@ -6,11 +6,11 @@ public class LevelManager : MonoBehaviour
     public bool win = false;
     public void StartGame()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene(1);
     }
     public void MainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(0);
     }
     public void QuitGame()
     {
