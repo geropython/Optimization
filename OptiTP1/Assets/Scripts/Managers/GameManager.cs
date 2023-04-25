@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     //Variable del PLayerTank
     [SerializeField] private GameObject tankPrefab; // prefab del tanque
     [SerializeField] private Transform spawnPoint; // punto de spawn del tanque
-
     // Singleton instance variable
 
     // Propiedad publica para acceder a la variable.
@@ -41,4 +42,5 @@ public class GameManager : MonoBehaviour
         // spawn del tanque en el punto designado desde el inspector
         Instantiate(tankPrefab, spawnPoint.position, Quaternion.identity);
     }
+
 }

@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class PlayerController : ManagedUpdateBehaviour
 {
+    public int _bulletScore = 0;
+
     private PlayerModel _playerModel;
+    public AmmoCounter _ammoCounter;
     private Vector3 _direction = Vector3.zero;
     private bool _prevStatusV;
     private bool _prevStatusH;
@@ -75,5 +78,7 @@ public class PlayerController : ManagedUpdateBehaviour
         if (!Input.GetKey(KeyCode.Space) || !(Time.time > _lastFireTime + 1f / fireRate)) return;
         _playerModel.PoolShoot();
         _lastFireTime = Time.time;
+        //_ammoCounter.IncrementBulletsShot();
+
     }
 }
