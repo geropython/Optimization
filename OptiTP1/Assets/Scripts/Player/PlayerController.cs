@@ -1,14 +1,9 @@
-using System;
-using Player;
-using Tomi.TomiScripts;
 using UnityEngine;
 
-public class PlayerController : ManagedUpdateBehaviour
+public class PlayerController : ManagedUpdateBehaviourUI
 {
-    public int _bulletScore = 0;
-
     private PlayerModel _playerModel;
-    public AmmoCounter _ammoCounter;
+    private AmmoCounter _ammoCounter;
     private Vector3 _direction = Vector3.zero;
     private bool _prevStatusV;
     private bool _prevStatusH;
@@ -30,6 +25,7 @@ public class PlayerController : ManagedUpdateBehaviour
     private void Awake()
     {
         _playerModel = GetComponent<PlayerModel>();
+        _ammoCounter = GetComponent<AmmoCounter>();
     }
 
 
@@ -56,6 +52,7 @@ public class PlayerController : ManagedUpdateBehaviour
         _statusH = Input.GetButton("Horizontal");
         _statusV = Input.GetButton("Vertical");
 
+        // Lazy computation ¿¿?? porque  el if frena hasta que no se cumpla su condicion
         if (_statusH && !_prevStatusH)
             _moveH = true;
         if ((_statusV && !_prevStatusV) || !_statusH)
@@ -78,7 +75,6 @@ public class PlayerController : ManagedUpdateBehaviour
         if (!Input.GetKey(KeyCode.Space) || !(Time.time > _lastFireTime + 1f / fireRate)) return;
         _playerModel.PoolShoot();
         _lastFireTime = Time.time;
-        //_ammoCounter.IncrementBulletsShot();
-
+        _ammoCounter.IncrementBulletsShot();
     }
 }

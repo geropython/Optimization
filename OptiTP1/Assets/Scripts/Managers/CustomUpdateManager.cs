@@ -35,6 +35,7 @@ public class CustomUpdateManager : MonoBehaviour
         _tempTime = 0;
     }
 
+    // No funciona correctamente
     // Se puede optimizar la version 1 usando el metodo a continuacion, si esto funcionara :(
     // la optimizacion seria que en ningun momento tiene que guardar una variable extra (_tempTime) ahorrando espacio en memoria
     private void UpdateVersion2()

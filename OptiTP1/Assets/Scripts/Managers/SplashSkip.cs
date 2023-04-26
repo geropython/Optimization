@@ -1,32 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SplashSkip : ManagedUpdateBehaviourUI
 {
-    public string _nextScene;
-
-    void Start()
+    public override void UpdateMe()
     {
-        // Hides the cursor...
-
-        Cursor.visible = false;
+        var scene = SceneManager.GetActiveScene().buildIndex;
+        if (Input.GetKeyDown(KeyCode.Space)) SceneManager.LoadScene(scene + 1);
     }
-    //public override void UpdateMe()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        print("IF");
-    //        SceneManager.LoadScene("MainMenu");
-    //    }
-    //}
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SceneManager.LoadScene(_nextScene);
-        }
-    }
-
 }

@@ -1,31 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class AmmoCounter : MonoBehaviour
 {
-     private int bulletsShot = 0;
-     public TextMeshProUGUI ammoText;
+    private int _bulletsShot = 0;
+    private TextMeshProUGUI _ammoText;
 
-    void Start()
+    private void Start()
     {
-        ammoText = GetComponent<TextMeshProUGUI>();
+        // OPTIMIZAME PORFA ALGUN DIA
+        var textMesh = FindObjectsOfType<TextMeshProUGUI>();
+        foreach (var mesh in textMesh)
+            if (mesh.name == "AmmoCounter")
+                _ammoText = mesh;
 
         UpdateAmmoText();
     }
 
     public void IncrementBulletsShot()
     {
-        bulletsShot+=1;
+        _bulletsShot++;
         UpdateAmmoText();
     }
 
     private void UpdateAmmoText()
     {
-        ammoText.text = "" + bulletsShot;
+        _ammoText.text = "" + _bulletsShot;
     }
-
-
 }

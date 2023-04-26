@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // Las justificaciones o aplicaciones de patrones estan comentadas en el script CustomUpdateManager
-// Este script es una copia con algunas variables diferentes
+// Este script es una copia con algunas variables diferentes 
 public class CustomUpdateManagerUI : MonoBehaviour
 {
     private ManagedUpdateBehaviourUI[] _list;
@@ -29,6 +29,7 @@ public class CustomUpdateManagerUI : MonoBehaviour
         _tempTime = 0;
     }
 
+    // no funciona correctamente
     private void UpdateVersion2()
     {
         if (Time.frameCount % FRAME_TARGET != 0) return;

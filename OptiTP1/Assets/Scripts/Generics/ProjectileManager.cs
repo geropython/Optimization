@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Pool;
 
+// Esto es precomputation??¿¿ 
 public class ProjectileManager : MonoBehaviour
 {
     private IObjectPool<Projectile> _projectilePool;

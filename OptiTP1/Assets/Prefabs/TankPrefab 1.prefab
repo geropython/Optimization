@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 181331568123683700}
   - component: {fileID: 6030114123994535238}
   - component: {fileID: 6184478968840252176}
+  - component: {fileID: 4598357164504326402}
   m_Layer: 3
   m_Name: TankPrefab 1
   m_TagString: Player
@@ -77,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60961d6098400cf43b461018626312fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _bulletScore: 0
   fireRate: 1
 --- !u!114 &6184478968840252176
 MonoBehaviour:
@@ -93,6 +95,19 @@ MonoBehaviour:
   speed: 20
   bulletPrefab: {fileID: -3729923774985597339, guid: 747b9f16cf9d0ac45a989917a2188207, type: 3}
   shootingPoint: {fileID: 7826648589209196393}
+--- !u!114 &4598357164504326402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182117161012643223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88be0f4c9e32fe34fb4d132aa6d34f8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoText: {fileID: 0}
 --- !u!1 &1398852966853888682
 GameObject:
   m_ObjectHideFlags: 0
