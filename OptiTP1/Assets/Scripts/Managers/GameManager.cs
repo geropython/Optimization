@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ProjectilePool.ResetPool();
+        Cursor.visible = false;
     }
 
     private void SpawnTank()

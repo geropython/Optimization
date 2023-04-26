@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void MainMenu()
@@ -16,9 +16,14 @@ public class LevelManager : MonoBehaviour
 
     public void QuitGame()
     {
-        if (Application.isEditor)
-            EditorApplication.isPlaying = false;
-        else
-            Application.Quit();
+        // ESTO ME TIRA ERROR EN EL BUILDEO.
+        // if (Application.isEditor)
+        //     EditorApplication.isPlaying = false;
+        // else
+        //     Application.Quit();
+        
+        //ESTO NO.
+        Application.Quit();
+        print("Exit Game");
     }
 }
