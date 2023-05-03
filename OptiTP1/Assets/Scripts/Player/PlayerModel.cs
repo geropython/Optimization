@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerModel : MonoBehaviour
@@ -27,5 +28,15 @@ public class PlayerModel : MonoBehaviour
     {
         var bullet = GameManager.Instance.ProjectilePool.GetFromPool();
         bullet.SetupProjectile(shootingPoint.position, shootingPoint.rotation, shootingPoint.forward, BULLET_TAG);
+    }
+    
+    //Colisión con el Enemy y muerte.
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            //Destruye el tanque del player, luego lo spawnea en a posición inicial. ¿ O lo spawneo al toque? ---> COnsultar a MAXI.
+        }
     }
 }

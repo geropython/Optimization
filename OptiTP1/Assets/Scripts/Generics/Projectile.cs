@@ -60,6 +60,9 @@ public class Projectile : MonoBehaviour, IPoolableObject
             if (other.CompareTag("Enemy"))
             {
                 // Deal Damage to enemy
+                Destroy(other.gameObject); // Destruye el objeto Enemy
+                GameManager.Instance.EnemyDestroyed(); // llamo al método destroyed enemies del GM ----> CONSULTAR MAXI
+                
             }
         }
         else if (gameObject.CompareTag("EnemyBullet"))
@@ -67,6 +70,7 @@ public class Projectile : MonoBehaviour, IPoolableObject
             if (other.CompareTag("Player"))
             {
                 // Deal Damage to player
+                Destroy(other.gameObject); // Destruye el Player.
             }
         }
 

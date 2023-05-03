@@ -8,6 +8,8 @@ public class PlayerController : ManagedUpdateBehaviourUI
     private bool _prevStatusV;
     private bool _prevStatusH;
     private bool _moveH;
+    
+    //Tendría que estar acá la lógica del Collision con el eEnemy?
 
     // Todas estas variables eran locales y se optimizo[?] al guardarlas de manera permanente
     // ya que no se crean y destruyen en cada update
