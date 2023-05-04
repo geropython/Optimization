@@ -14,6 +14,7 @@ public class EnemyMove : MonoBehaviour
 
         Vector3 direction = waypoints[_currentWaypointIndex].position - transform.position;
         direction.y = 0;
+        // PARA QUE NO VAYA EN DIAGONAL
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.z))
         {
             direction.z = 0;
@@ -22,9 +23,11 @@ public class EnemyMove : MonoBehaviour
         {
             direction.x = 0;
         }
-
+        // print(direction);
+        // direction.normalized;
         transform.position += direction.normalized * (speed * Time.deltaTime);
-
+        
+        
         if (Vector3.Distance(transform.position, waypoints[_currentWaypointIndex].position) < 0.1f)
         {
             _currentWaypointIndex = (_currentWaypointIndex + 1) % waypoints.Length;
