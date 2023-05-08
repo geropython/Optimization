@@ -49,6 +49,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PlayerDestroyed()
+    {
+        // Mover al jugador al punto de respawn
+        transform.position = spawnPoint.position;
+    }
+
     private void WinGame()
     {
         //PlaceHolder

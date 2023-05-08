@@ -6,17 +6,17 @@ public class EnemyModel : MonoBehaviour
 {
 
     public float timeInCurrentDirection = 0f;
-    public float maxTimeInCurrentDirection = 1f;
+    public float maxTimeInCurrentDirection = 1.5f;
     public float speed = 15f;
 
-    [SerializeField] private Transform shootingPoint;
+    //[SerializeField] private Transform shootingPoint;
     private const string BULLET_TAG = "EnemyBullet";
     public float timeShootEnemy = 2f;
 
     
     public void EnemyMove()
     {
-        transform.position += transform.forward * speed * Time.deltaTime;
+        transform.position += transform.forward * (speed * Time.deltaTime);
 
         // Si ha pasado suficiente tiempo en la dirección actual, cambia de dirección
         timeInCurrentDirection += Time.deltaTime;
@@ -47,8 +47,11 @@ public class EnemyModel : MonoBehaviour
                 break;
         }
     }
-    public void PoolShoot()
+    public void PoolShoot(Transform shootingPoint)
     {
+        // var bullet = GameManager.Instance.ProjectilePool.GetFromPool();
+        // bullet.SetupProjectile(shootingPoint.position, shootingPoint.rotation, shootingPoint.forward, BULLET_TAG);
+        
         var bullet = GameManager.Instance.ProjectilePool.GetFromPool();
         bullet.SetupProjectile(shootingPoint.position, shootingPoint.rotation, shootingPoint.forward, BULLET_TAG);
     }

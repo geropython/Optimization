@@ -8,6 +8,7 @@ public class PlayerController : ManagedUpdateBehaviourUI
     private bool _prevStatusV;
     private bool _prevStatusH;
     private bool _moveH;
+   [SerializeField] private Transform respawnPoint;  //No me deja asignarla en el inspector.
     
     //Tendría que estar acá la lógica del Collision con el eEnemy?
 
@@ -78,5 +79,15 @@ public class PlayerController : ManagedUpdateBehaviourUI
         _playerModel.PoolShoot();
         _lastFireTime = Time.time;
         _ammoCounter.IncrementBulletsShot();
+    }
+    
+    //Colisión con el Enemy y muerte.
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // Mover al jugador al punto de respawn
+            GameManager.Instance.PlayerDestroyed();
+        }
     }
 }
