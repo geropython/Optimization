@@ -53,14 +53,15 @@ public class EnemyModel : MonoBehaviour
     public void PoolShoot(Transform shootingPoint)
     {
         // var bullet = GameManager.Instance.ProjectilePool.GetFromPool();
-        // bullet.SetupProjectile(shootingPoint.position, shootingPoint.rotation, shootingPoint.forward, BULLET_TAG);
+        // bullet.SetupProjectile(shootingPoint.position, shootingPoint.rotation, shootingPoint.forward, BULLET_TAG);  esto no se por que estaba comentado 
         
         var bullet = GameManager.Instance.ProjectilePool.GetFromPool();
+        print("Pedi pool");
         bullet.SetupProjectile(shootingPoint.position, shootingPoint.rotation, shootingPoint.forward, BULLET_TAG);
     }
 
     public void EnemyDestroyed()
     {
-        gameObject.SetActive(false); // ASí quedaria el detroy o lo mando Destroy gameObject directamente?
+        gameObject.SetActive(false); 
     }
 }

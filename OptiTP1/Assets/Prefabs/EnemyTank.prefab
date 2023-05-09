@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34496896596460500}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.3, z: 0}
+  m_LocalPosition: {x: 0, y: 2.87, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 9142335900739368801}
   - component: {fileID: 9142335900739368803}
   - component: {fileID: 9142335900739368800}
+  - component: {fileID: -8081235661584362645}
   m_Layer: 7
   m_Name: EnemyTank
   m_TagString: Enemy
@@ -376,7 +377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e049a063d2a37429c90b1d765d58e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBullet: {fileID: 873898600171084883, guid: a62e22a6b8ce86a4587272f3814c1b25, type: 3}
   shootingPoint: {fileID: 8042716773923344480}
 --- !u!114 &9142335900739368800
 MonoBehaviour:
@@ -394,6 +394,22 @@ MonoBehaviour:
   maxTimeInCurrentDirection: 0.1
   speed: 25
   timeShootEnemy: 2
+--- !u!114 &-8081235661584362645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9142335900739368792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6820dcd31155c474dab885947fe68e4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileManager: {fileID: 0}
+  projectileSpawnPoint: {fileID: 8042716773923344480}
+  fireRate: 1
+  projectileSpeed: 25
 --- !u!1 &9142335901573630140
 GameObject:
   m_ObjectHideFlags: 0
