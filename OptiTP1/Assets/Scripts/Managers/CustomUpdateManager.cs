@@ -1,8 +1,11 @@
+
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CustomUpdateManager : MonoBehaviour
 {
-    private ManagedUpdateBehaviour[] _list;
+   private List<ManagedUpdateBehaviour> _list;
 
     // No se si utilizar variables constantes cuenta como Hashing ya que no es una tabla
     private const float FRAME_TIME_60 = 0.01666f;
@@ -13,7 +16,7 @@ public class CustomUpdateManager : MonoBehaviour
     {
         // Precomputation porque busca todos los objetos al comienzo de la escena
         // Esto se podria hacer cada vez que trata de hacer un update pero no seria optimo
-        _list = FindObjectsOfType<ManagedUpdateBehaviour>();
+        _list = new List<ManagedUpdateBehaviour>(FindObjectsOfType<ManagedUpdateBehaviour>());
     }
 
     private void Update()
@@ -29,7 +32,7 @@ public class CustomUpdateManager : MonoBehaviour
         if (!(_tempTime >= FRAME_TIME_60)) return;
         // Caching para luego utilizar este valor en el for 
         // Este valor se podria poner directo en el for, pero cada iteracion lo tendria que volver a calcular
-        var count = _list.Length;
+        var count = _list.Count;
         for (var i = 0; i < count; i++) _list[i].UpdateMe();
 
         _tempTime = 0;
@@ -41,7 +44,7 @@ public class CustomUpdateManager : MonoBehaviour
     private void UpdateVersion2()
     {
         if (Time.frameCount % FRAME_TARGET != 0) return;
-        var count = _list.Length;
+        var count = _list.Count;
         for (var i = 0; i < count; i++) _list[i].UpdateMe();
     }
 
@@ -49,7 +52,7 @@ public class CustomUpdateManager : MonoBehaviour
     {
         if (!_list.Contains(managed))
         {
-            _list.Add(managed)
+            _list.Add(managed);
         }
     }
 

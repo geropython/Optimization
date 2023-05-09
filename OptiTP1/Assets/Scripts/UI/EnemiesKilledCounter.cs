@@ -13,6 +13,7 @@ public class EnemiesKilledCounter : MonoBehaviour
     
     private void Start()
     {
+        
         // OPTIMIZAME PORFA ALGUN DIA
         var textMesh = FindObjectsOfType<TextMeshProUGUI>();
         foreach (var mesh in textMesh)
