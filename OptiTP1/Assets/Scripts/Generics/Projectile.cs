@@ -1,15 +1,15 @@
 using Tomi.TomiScripts;
 using UnityEngine;
 
-// Optimizacion[3] forzamos que siempre tenga rb asi no hay que hacer un check de null
+// Optimizacion[1] forzamos que siempre tenga rb asi no hay que hacer un check de null
 [RequireComponent(typeof(Rigidbody))]
 public class Projectile : MonoBehaviour, IPoolableObject
 {
-    // Optimizacion[1] guardo el valor en el prefab y no en el disparador
     [SerializeField] private float speed;
     [SerializeField] private float lifetime = 3f;
+    private bool isPlayerBullet;
 
-    // Optimizacion[2] guarda el rigidbody apenas spawnea la bala 
+    // Optimizacion[2] guarda el rigidbody apenas spawnea la bala, para no tener que calcularlo cada vez que se usa el valor
     private Rigidbody _rb;
 
     private void Awake()
@@ -25,54 +25,60 @@ public class Projectile : MonoBehaviour, IPoolableObject
     public void SetupProjectile(Vector3 pos, Quaternion rot, Vector3 forwardDir, string ownerTag)
     {
         gameObject.tag = ownerTag;
+        // Optimizacion [3] hace el precalculo para ver si es player o enemy bullet 
+        // y lo usa despues para no calcularlo siempre que activa collision
+        if (ownerTag == "PlayerBullet")
+        {
+            isPlayerBullet = true; 
+            gameObject.tag = ownerTag;   
+        }
+        if (ownerTag == "EnemyBullet")
+        {
+            isPlayerBullet = false;
+            gameObject.tag = ownerTag;
+        }
         transform.SetPositionAndRotation(pos, rot);
-        Fire(forwardDir);
+        Move(forwardDir);
     }
 
-    public void Fire(Vector3 dir)
+    private void Move(Vector3 dir)
     {
         dir.y = 0;
         _rb.velocity = dir * speed;
     }
 
-    // para usar con el shooting Script
-    public void Fire(Vector3 dir, float vel)
-    {
-        dir.y = 0;
-        _rb.velocity = dir * vel;
-    }
-
-    // private Vector3 _speed;
-    //
-    // public void Fire(Vector3 bulletSpeed)
-    // {
-    //     //Disparo de proyectil
-    //     [1]_speed = bulletSpeed;
-    //     [2]var rb = GetComponent<Rigidbody>();
-    //     [3]if (rb != null)
-    //          rb.velocity = _speed;
-    // }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (gameObject.CompareTag("PlayerBullet"))
+        if (isPlayerBullet)
         {
             if (other.CompareTag("Enemy"))
             {
-                // Deal Damage to enemy
-                Destroy(other.gameObject); // Destruye el objeto Enemy
-                GameManager.Instance.EnemyDestroyed(); // llamo al método destroyed enemies del GM ----> CONSULTAR MAXI
-                
+                GameManager.Instance.EnemyDestroyed();
+                other.gameObject.GetComponent<EnemyModel>.EnemyDestroyed();
             }
         }
-        else if (gameObject.CompareTag("EnemyBullet"))
+        else 
         {
             if (other.CompareTag("Player"))
             {
-                // Deal Damage to player
-                Destroy(other.gameObject); // Destruye el Player.
+                other.gameObject.GetComponent<PlayerModel>.Respawn();
             }
         }
+        // if (gameObject.CompareTag("PlayerBullet"))
+        // {
+        //     if (other.CompareTag("Enemy"))
+        //     {
+        //         GameManager.Instance.EnemyDestroyed();
+        //         other.gameObject.GetComponent<EnemyModel>.EnemyDestroyed();
+        //     }
+        // }
+        // else if (gameObject.CompareTag("EnemyBullet"))
+        // {
+        //     if (other.CompareTag("Player"))
+        //     {
+        //         other.gameObject.GetComponent<PlayerModel>.Respawn();
+        //     }
+        // }
 
         PoolReturn();
     }

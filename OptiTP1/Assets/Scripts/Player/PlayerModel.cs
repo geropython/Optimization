@@ -31,5 +31,8 @@ public class PlayerModel : MonoBehaviour
         bullet.SetupProjectile(shootingPoint.position, shootingPoint.rotation, shootingPoint.forward, BULLET_TAG);
     }
     
-   
+    public void Respawn()
+    {
+
+    }
 }
