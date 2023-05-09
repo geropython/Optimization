@@ -1,4 +1,3 @@
-using Tomi.TomiScripts;
 using UnityEngine;
 
 // Optimizacion[1] forzamos que siempre tenga rb asi no hay que hacer un check de null
@@ -7,7 +6,7 @@ public class Projectile : MonoBehaviour, IPoolableObject
 {
     [SerializeField] private float speed;
     [SerializeField] private float lifetime = 3f;
-    private bool isPlayerBullet;
+    private bool _isPlayerBullet;
 
     // Optimizacion[2] guarda el rigidbody apenas spawnea la bala, para no tener que calcularlo cada vez que se usa el valor
     private Rigidbody _rb;
@@ -29,12 +28,12 @@ public class Projectile : MonoBehaviour, IPoolableObject
         // y lo usa despues para no calcularlo siempre que activa collision
         if (ownerTag == "PlayerBullet")
         {
-            isPlayerBullet = true; 
+            _isPlayerBullet = true; 
             gameObject.tag = ownerTag;   
         }
         if (ownerTag == "EnemyBullet")
         {
-            isPlayerBullet = false;
+            _isPlayerBullet = false;
             gameObject.tag = ownerTag;
         }
         transform.SetPositionAndRotation(pos, rot);
@@ -49,19 +48,19 @@ public class Projectile : MonoBehaviour, IPoolableObject
 
     private void OnTriggerEnter(Collider other)
     {
-        if (isPlayerBullet)
+        if (_isPlayerBullet)
         {
             if (other.CompareTag("Enemy"))
             {
                 GameManager.Instance.EnemyDestroyed();
-                other.gameObject.GetComponent<EnemyModel>.EnemyDestroyed();
+                other.gameObject.GetComponent<EnemyModel>().EnemyDestroyed();
             }
         }
         else 
         {
             if (other.CompareTag("Player"))
             {
-                other.gameObject.GetComponent<PlayerModel>.Respawn();
+                other.gameObject.GetComponent<PlayerModel>().Respawn();
             }
         }
         // if (gameObject.CompareTag("PlayerBullet"))
