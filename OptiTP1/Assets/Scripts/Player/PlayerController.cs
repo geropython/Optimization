@@ -8,7 +8,7 @@ public class PlayerController : ManagedUpdateBehaviourUI
     private bool _prevStatusV;
     private bool _prevStatusH;
     private bool _moveH;
-   [SerializeField] private Transform respawnPoint;  //No me deja asignarla en el inspector.
+  // [SerializeField] private Transform spawnPoint;  //No me deja asignarla en el inspector.
     
     //Tendría que estar acá la lógica del Collision con el eEnemy?
 
@@ -87,7 +87,15 @@ public class PlayerController : ManagedUpdateBehaviourUI
         if (collision.gameObject.CompareTag("Enemy"))
         {
             // Mover al jugador al punto de respawn
-            GameManager.Instance.PlayerDestroyed();
+           PlayerDestroyed();  
         }
+        print(collision.gameObject.tag);
+    }
+    
+    
+    public void PlayerDestroyed()   
+    {
+        // Mover al jugador al punto de respawn
+        transform.position = GameManager.Instance.spawnPoint.position;  // Llama al spawnPoint desde el game Manager para spawnear el tanque.
     }
 }

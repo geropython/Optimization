@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : CustomUpdateManager
 {
     [SerializeField] private GameObject enemyPrefab; // prefab del enemigo
     [SerializeField] private List<Transform> spawnPoints; // lista de puntos de spawn
     [SerializeField] private float spawnInterval = 5f; // tiempo entre spawns
 
-    private int _enemiesSpawned = 0; // contador de enemigos spawnados
+    private int _enemiesSpawned = 0; // contador de enemigos spawneados
 
     private void Start()
     {
         StartCoroutine(SpawnEnemies());   // expensive?¿ Non Alloc method?¿
+    }
+
+    void UpdateMe()
+    {
+        // Stuff
     }
 
     private IEnumerator SpawnEnemies()

@@ -4,12 +4,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject tankPrefab; // prefab del tanque
-    [SerializeField] private Transform spawnPoint; // punto de spawn del tanque
+     public Transform spawnPoint; // punto de spawn del tanque
     
     private int _enemiesDestroyed = 0; // contador de enemigos eliminados
     public static GameManager Instance { get; private set; }
     public ProjectileManager ProjectilePool { get; private set; }
-
+    
     private void Awake()
     {
         // Si ya hay otra instancia, destruye ésta.
@@ -48,13 +48,7 @@ public class GameManager : MonoBehaviour
             WinGame();
         }
     }
-
-    public void PlayerDestroyed()
-    {
-        // Mover al jugador al punto de respawn
-        transform.position = spawnPoint.position;
-    }
-
+    
     private void WinGame()
     {
         //PlaceHolder
