@@ -6,45 +6,35 @@ public class EnemyController : ManagedUpdateBehaviour
 {
     private EnemyModel _enemyModel;
     private float _lastFireTime;
-    private float _fireRate;
-    //public GameObject enemyBullet;
-    public Transform shootingPoint;
+    [SerializeField] private float _fireRate = 2f;    
 
     private void Awake()
     {
-        _enemyModel = GetComponent<EnemyModel>();
-        _fireRate = 2f;  
-        
+        _enemyModel = GetComponent<EnemyModel>();        
     }
     public override void UpdateMe()
     {
-        _enemyModel.EnemyMove();
-        ShootLogic();
         print("Disparo enemigo");
+        ShootLogic();
+        _enemyModel.EnemyMove();        
     }
 
     private void ShootLogic()
     {
-       
         // _lastFireTime += Time.deltaTime;
         // if(_lastFireTime >=2f)
         //     _enemyModel.PoolShoot(shootingPoint);
         // _lastFireTime = 0f;   
-       
+        print("Dispare"); 
         _lastFireTime += Time.deltaTime;
         if (_lastFireTime >= _fireRate)
         {
-            _enemyModel.PoolShoot(shootingPoint);
+            _enemyModel.PoolShoot();
             _lastFireTime = 0f;
         }
-        print("Dispare");
     }
-    // private void ShootEnemy()
-    // {
-    //     // Shoot Logic enemyBullet ??   esto ni se estaba usando.
-    // }
-
-    public void OnCollisionEnter(Collision collision)
+    
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -53,5 +43,4 @@ public class EnemyController : ManagedUpdateBehaviour
         }
       
     }
-
 }

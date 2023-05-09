@@ -11,7 +11,7 @@ public class EnemyModel : MonoBehaviour
     public float maxTimeInCurrentDirection = 1.5f;
     public float speed = 15f;
 
-    //[SerializeField] private Transform shootingPoint;
+    [SerializeField] private Transform shootingPoint;
     private const string BULLET_TAG = "EnemyBullet";
     public float timeShootEnemy = 2f;
 
@@ -21,7 +21,7 @@ public class EnemyModel : MonoBehaviour
     {
         transform.position += transform.forward * (speed * Time.deltaTime);
 
-        // Si ha pasado suficiente tiempo en la dirección actual, cambia de dirección
+        // Si ha pasado suficiente tiempo en la direcciï¿½n actual, cambia de direcciï¿½n
         timeInCurrentDirection += Time.deltaTime;
         if (timeInCurrentDirection > maxTimeInCurrentDirection)
         {
@@ -32,7 +32,7 @@ public class EnemyModel : MonoBehaviour
 
     public void ChangeDirection()
     {
-        // Cambia la dirección aleatoriamente
+        // Cambia la direcciï¿½n aleatoriamente
         int randomDirection = Random.Range(0, 4);
         switch (randomDirection)
         {
@@ -50,13 +50,10 @@ public class EnemyModel : MonoBehaviour
                 break;
         }
     }
-    public void PoolShoot(Transform shootingPoint)
-    {
-        // var bullet = GameManager.Instance.ProjectilePool.GetFromPool();
-        // bullet.SetupProjectile(shootingPoint.position, shootingPoint.rotation, shootingPoint.forward, BULLET_TAG);  esto no se por que estaba comentado 
-        
+    public void PoolShoot()
+    {    
+        print("Pedi pool");  
         var bullet = GameManager.Instance.ProjectilePool.GetFromPool();
-        print("Pedi pool");
         bullet.SetupProjectile(shootingPoint.position, shootingPoint.rotation, shootingPoint.forward, BULLET_TAG);
     }
 
