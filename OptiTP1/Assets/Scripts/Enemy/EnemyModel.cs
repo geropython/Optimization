@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyModel : MonoBehaviour
 {
@@ -13,7 +15,8 @@ public class EnemyModel : MonoBehaviour
     private const string BULLET_TAG = "EnemyBullet";
     public float timeShootEnemy = 2f;
 
-    
+   
+
     public void EnemyMove()
     {
         transform.position += transform.forward * (speed * Time.deltaTime);
@@ -54,5 +57,10 @@ public class EnemyModel : MonoBehaviour
         
         var bullet = GameManager.Instance.ProjectilePool.GetFromPool();
         bullet.SetupProjectile(shootingPoint.position, shootingPoint.rotation, shootingPoint.forward, BULLET_TAG);
+    }
+
+    public void EnemyDestroyed()
+    {
+        gameObject.SetActive(false); // ASí quedaria el detroy o lo mando Destroy gameObject directamente?
     }
 }

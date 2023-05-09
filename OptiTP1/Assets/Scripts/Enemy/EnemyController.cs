@@ -41,4 +41,14 @@ public class EnemyController : ManagedUpdateBehaviour
     //     // Shoot Logic enemyBullet ??
     // }
 
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            // Destruye al Enemy al colisionar con el Player.
+            _enemyModel.EnemyDestroyed(); 
+        }
+      
+    }
+
 }
