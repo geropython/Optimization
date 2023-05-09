@@ -28,14 +28,16 @@ public class Projectile : MonoBehaviour, IPoolableObject
         // y lo usa despues para no calcularlo siempre que activa collision
         if (ownerTag == "PlayerBullet")
         {
-            _isPlayerBullet = true; 
-            gameObject.tag = ownerTag;   
+            _isPlayerBullet = true;
+            gameObject.tag = ownerTag;
         }
+
         if (ownerTag == "EnemyBullet")
         {
             _isPlayerBullet = false;
             gameObject.tag = ownerTag;
         }
+
         transform.SetPositionAndRotation(pos, rot);
         Move(forwardDir);
     }
@@ -56,28 +58,10 @@ public class Projectile : MonoBehaviour, IPoolableObject
                 other.gameObject.GetComponent<EnemyModel>().EnemyDestroyed();
             }
         }
-        else 
+        else
         {
-            if (other.CompareTag("Player"))
-            {
-                other.gameObject.GetComponent<PlayerModel>().Respawn();
-            }
+            if (other.CompareTag("Player")) other.gameObject.GetComponent<PlayerModel>().Respawn();
         }
-        // if (gameObject.CompareTag("PlayerBullet"))
-        // {
-        //     if (other.CompareTag("Enemy"))
-        //     {
-        //         GameManager.Instance.EnemyDestroyed();
-        //         other.gameObject.GetComponent<EnemyModel>.EnemyDestroyed();
-        //     }
-        // }
-        // else if (gameObject.CompareTag("EnemyBullet"))
-        // {
-        //     if (other.CompareTag("Player"))
-        //     {
-        //         other.gameObject.GetComponent<PlayerModel>.Respawn();
-        //     }
-        // }
 
         PoolReturn();
     }

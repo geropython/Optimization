@@ -1,11 +1,10 @@
-
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class CustomUpdateManager : MonoBehaviour
 {
-   private List<ManagedUpdateBehaviour> _list;
+    private List<ManagedUpdateBehaviour> _list;
 
     // No se si utilizar variables constantes cuenta como Hashing ya que no es una tabla
     private const float FRAME_TIME_60 = 0.01666f;
@@ -38,29 +37,13 @@ public class CustomUpdateManager : MonoBehaviour
         _tempTime = 0;
     }
 
-    // No funciona correctamente
-    // Se puede optimizar la version 1 usando el metodo a continuacion, si esto funcionara :(
-    // la optimizacion seria que en ningun momento tiene que guardar una variable extra (_tempTime) ahorrando espacio en memoria
-    private void UpdateVersion2()
-    {
-        if (Time.frameCount % FRAME_TARGET != 0) return;
-        var count = _list.Count;
-        for (var i = 0; i < count; i++) _list[i].UpdateMe();
-    }
-
     public void AddToList(ManagedUpdateBehaviour managed)
     {
-        if (!_list.Contains(managed))
-        {
-            _list.Add(managed);
-        }
+        if (!_list.Contains(managed)) _list.Add(managed);
     }
 
     public void RemoveFromList(ManagedUpdateBehaviour managed)
     {
-        if (_list.Contains(managed))
-        {
-            _list.Remove(managed);
-        }
+        if (_list.Contains(managed)) _list.Remove(managed);
     }
 }

@@ -1,63 +1,50 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : ManagedUpdateBehaviour
 {
+    private const string BULLET_TAG = "EnemyBullet";
     private EnemyModel _enemyModel;
     private float _lastFireTime;
-    [SerializeField] private float _fireRate = 2f;    
-
-    //------------------ENEMY NEW MOVEMENT VARIABLES -------------------------
-    public float timeInCurrentDirection = 0f;
-    public float maxTimeInCurrentDirection = 1f;
-    public float speed = 5f;
-    
+    [SerializeField] private float fireRate = 2f;
     [SerializeField] private Transform shootingPoint;
-    private const string BULLET_TAG = "EnemyBullet";
-    public float timeShootEnemy=2f;
+    [SerializeField] private float timeInCurrentDirection = 0f;
+    [SerializeField] private float maxTimeInCurrentDirection = 1f;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float timeShootEnemy = 2f;
+
     private void Awake()
     {
-        _enemyModel = GetComponent<EnemyModel>();        
+        _enemyModel = GetComponent<EnemyModel>();
     }
+
     public override void UpdateMe()
     {
-      print("Disparo enemigo");
         ShootLogic();
-        _enemyModel.EnemyMove();  
         NewMovement();
-        //NEW ENEMY MOVEMENT UPDATE
-      
     }
 
     private void ShootLogic()
     {
-       
-        print("Dispare"); 
         _lastFireTime += Time.deltaTime;
-        if (_lastFireTime >= _fireRate)
+        if (_lastFireTime >= fireRate)
         {
             _enemyModel.PoolShoot();
             _lastFireTime = 0f;
         }
     }
-    
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             // Destruye al Enemy al colisionar con el Player.
-            _enemyModel.EnemyDestroyed(); 
+            _enemyModel.EnemyDestroyed();
             GameManager.Instance.CustomGameplayUpdate.RemoveFromList(this);
         }
-        
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            Debug.Log("PARED");
-            ChangeDirection();
-        }
-      
+
+        if (collision.gameObject.CompareTag("Wall")) ChangeDirection();
     }
+
     private void NewMovement()
     {
         // Mueve el tanque en la dirección actual
@@ -70,18 +57,17 @@ public class EnemyController : ManagedUpdateBehaviour
             timeInCurrentDirection = 0f;
             ChangeDirection();
         }
+
         timeShootEnemy -= Time.deltaTime;
         if (0f >= timeShootEnemy)
-        {
             //Fire();
             timeShootEnemy = 2f;
-        }
     }
+
     public void ChangeDirection()
     {
         // Cambia la dirección aleatoriamente
-        int randomDirection = Random.Range(0, 4);
-        switch (randomDirection)
+        switch (Random.Range(0, 4))
         {
             case 0:
                 transform.rotation = Quaternion.Euler(0f, 0f, 0f);
@@ -97,11 +83,4 @@ public class EnemyController : ManagedUpdateBehaviour
                 break;
         }
     }
-    
-    public void PoolShoot()
-    {
-        var bullet = GameManager.Instance.ProjectilePool.GetFromPool();
-        bullet.SetupProjectile(shootingPoint.position, shootingPoint.rotation, shootingPoint.forward, BULLET_TAG);
-    }
-    
 }

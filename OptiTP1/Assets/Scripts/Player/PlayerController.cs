@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class PlayerController : ManagedUpdateBehaviour
 {
+    // El tiempo en el que se disparó la última bala
+    private float _lastFireTime;
     private PlayerModel _playerModel;
     private AmmoCounter _ammoCounter;
     private Vector3 _direction = Vector3.zero;
     private bool _prevStatusV;
     private bool _prevStatusH;
+
     private bool _moveH;
-  // [SerializeField] private Transform spawnPoint;  //No me deja asignarla en el inspector.
-    
-    //Tendría que estar acá la lógica del Collision con el eEnemy?
 
     // Todas estas variables eran locales y se optimizo[?] al guardarlas de manera permanente
     // ya que no se crean y destruyen en cada update
@@ -21,9 +21,6 @@ public class PlayerController : ManagedUpdateBehaviour
 
     // cantidad de disparos por seg.
     [SerializeField] private float fireRate = 1f;
-
-    // El tiempo en el que se disparó la última bala
-    private float _lastFireTime;
 
     private void Awake()
     {
@@ -37,15 +34,6 @@ public class PlayerController : ManagedUpdateBehaviour
         MoveLogic();
         ShootLogic();
     }
-
-    // sacarle el ! a enable para usar el update comun
-#if UNITY_EDITOR && !ENABLE_UPDATE
-    private void Update()
-    {
-         MoveLogic();
-         ShootLogic();
-    }
-#endif
 
     private void MoveLogic()
     {
@@ -80,22 +68,20 @@ public class PlayerController : ManagedUpdateBehaviour
         _lastFireTime = Time.time;
         _ammoCounter.IncrementBulletsShot();
     }
-    
+
     //Colisión con el Enemy y muerte.
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
-        {
             // Mover al jugador al punto de respawn
-           PlayerDestroyed();  
-        }
-      
+            PlayerDestroyed();
     }
-    
-    
-    public void PlayerDestroyed()   
+
+    public void PlayerDestroyed()
     {
         // Mover al jugador al punto de respawn
-        transform.position = GameManager.Instance.SpawnPoint.position;  // Llama al spawnPoint desde el game Manager para spawnear el tanque.
+        transform.position =
+            GameManager.Instance.SpawnPoint
+                .position; // Llama al spawnPoint desde el game Manager para spawnear el tanque.
     }
 }

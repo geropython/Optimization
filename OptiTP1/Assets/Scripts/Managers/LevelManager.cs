@@ -16,15 +16,12 @@ public class LevelManager : MonoBehaviour
 
     public void QuitGame()
     {
-        // ESTO ME TIRA ERROR EN EL BUILDEO.
-        // if (Application.isEditor)
-        //     EditorApplication.isPlaying = false;
-        // else
-        //     Application.Quit();
-        
-        //ESTO NO.
+#if UNITY_EDITOR
+        if (Application.isEditor)
+            EditorApplication.isPlaying = false;
+        else
+            Application.Quit();
+#endif
         Application.Quit();
-        print("Exit Game");
     }
-    
 }

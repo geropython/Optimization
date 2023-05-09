@@ -17,7 +17,7 @@ public class CustomUpdateManagerUI : MonoBehaviour
 
     private void Update()
     {
-        UpdateVersion1();  
+        UpdateVersion1();
     }
 
     private void UpdateVersion1()
@@ -30,27 +30,13 @@ public class CustomUpdateManagerUI : MonoBehaviour
         _tempTime = 0;
     }
 
-    // no funciona correctamente
-    private void UpdateVersion2()
-    {
-        if (Time.frameCount % FRAME_TARGET != 0) return;
-        var count = _list.Count;
-        for (var i = 0; i < count; i++) _list[i].UpdateMe();
-    }
-
     public void AddToList(ManagedUpdateBehaviourUI managed)
     {
-        if (!_list.Contains(managed))
-        {
-            _list.Add(managed);
-        }
+        if (!_list.Contains(managed)) _list.Add(managed);
     }
 
     public void RemoveFromList(ManagedUpdateBehaviourUI managed)
     {
-        if (_list.Contains(managed))
-        {
-            _list.Remove(managed);
-        }
+        if (_list.Contains(managed)) _list.Remove(managed);
     }
 }

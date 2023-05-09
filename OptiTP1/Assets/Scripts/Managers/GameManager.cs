@@ -3,16 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    private int _enemiesDestroyed = 0; // contador de enemigos eliminados
+
     [SerializeField] private GameObject tankPrefab; // prefab del tanque
     [SerializeField] private Transform spawnPoint;
-    public Transform SpawnPoint => spawnPoint;// punto de spawn del tanque
-    
-    private int _enemiesDestroyed = 0; // contador de enemigos eliminados
+    public Transform SpawnPoint => spawnPoint; // punto de spawn del tanque
     public static GameManager Instance { get; private set; }
     public ProjectileManager ProjectilePool { get; private set; }
-    public CustomUpdateManager CustomGameplayUpdate {get; private set;}
-    public CustomUpdateManagerUI CustomUIUpdate {get; private set;}
-    
+    public CustomUpdateManager CustomGameplayUpdate { get; private set; }
+    public CustomUpdateManagerUI CustomUIUpdate { get; private set; }
+
     private void Awake()
     {
         // Si ya hay otra instancia, destruye ésta.
@@ -44,19 +44,16 @@ public class GameManager : MonoBehaviour
         // spawn del tanque en el punto designado desde el inspector
         Instantiate(tankPrefab, spawnPoint.position, Quaternion.identity);
     }
-    
-    public void EnemyDestroyed()  //Llamar a esto cuando se destruye un enemy en Script de Enemy?¿ ---> CONSULTAR A MAXI
+
+    public void EnemyDestroyed() //Llamar a esto cuando se destruye un enemy en Script de Enemy?¿ ---> CONSULTAR A MAXI
     {
         _enemiesDestroyed++;
-        if (_enemiesDestroyed >= 100)
-        {
-            WinGame();
-        }
+        if (_enemiesDestroyed >= 100) WinGame();
     }
-    
+
     private void WinGame()
     {
         //PlaceHolder
-        SceneManager.LoadScene("Win");
+        Logging.Log("Win");
     }
 }

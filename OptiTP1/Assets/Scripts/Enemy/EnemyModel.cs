@@ -1,22 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class EnemyModel : MonoBehaviour
 {
-
-    public float timeInCurrentDirection = 0f;
-    public float maxTimeInCurrentDirection = 1.5f;
-    public float speed = 15f;
-    private EnemiesKilledCounter _killCounter ;
-
+    [SerializeField] private float timeInCurrentDirection = 0f;
+    [SerializeField] private float maxTimeInCurrentDirection = 1.5f;
+    [SerializeField] private float speed = 15f;
     [SerializeField] private Transform shootingPoint;
+    private EnemiesKilledCounter _killCounter;
     private const string BULLET_TAG = "EnemyBullet";
-    public float timeShootEnemy = 2f;
-
-   
 
     public void EnemyMove()
     {
@@ -34,7 +25,7 @@ public class EnemyModel : MonoBehaviour
     public void ChangeDirection()
     {
         // Cambia la direcci�n aleatoriamente
-        int randomDirection = Random.Range(0, 4);
+        var randomDirection = Random.Range(0, 4);
         switch (randomDirection)
         {
             case 0:
@@ -51,9 +42,9 @@ public class EnemyModel : MonoBehaviour
                 break;
         }
     }
+
     public void PoolShoot()
-    {    
-        print("Pedi pool");  
+    {
         var bullet = GameManager.Instance.ProjectilePool.GetFromPool();
         bullet.SetupProjectile(shootingPoint.position, shootingPoint.rotation, shootingPoint.forward, BULLET_TAG);
     }
@@ -61,8 +52,6 @@ public class EnemyModel : MonoBehaviour
     public void EnemyDestroyed()
     {
         // _killCounter.IncrementEnemiesKilled();  --> FOR UI 
-        
         Destroy(gameObject);
-        
     }
 }
