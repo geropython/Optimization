@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     private int _enemiesDestroyed = 0; // contador de enemigos eliminados
     public static GameManager Instance { get; private set; }
     public ProjectileManager ProjectilePool { get; private set; }
+    public CustomUpdateManager CustomGameplayUpdate {get; private set;}
+    public CustomUpdateManagerUI CustomUIUpdate {get; private set;}
     
     private void Awake()
     {
@@ -27,6 +29,8 @@ public class GameManager : MonoBehaviour
 
         SpawnTank();
         ProjectilePool = GetComponent<ProjectileManager>();
+        CustomGameplayUpdate = GetComponent<CustomUpdateManager>();
+        CustomUIUpdate = GetComponent<CustomUpdateManagerUI>();
     }
 
     private void Start()

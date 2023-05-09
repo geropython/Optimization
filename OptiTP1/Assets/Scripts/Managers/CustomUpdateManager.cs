@@ -44,4 +44,20 @@ public class CustomUpdateManager : MonoBehaviour
         var count = _list.Length;
         for (var i = 0; i < count; i++) _list[i].UpdateMe();
     }
+
+    public void AddToList(ManagedUpdateBehaviour managed)
+    {
+        if (!_list.Contains(managed))
+        {
+            _list.Add(managed)
+        }
+    }
+
+    public void RemoveFromList(ManagedUpdateBehaviour managed)
+    {
+        if (_list.Contains(managed))
+        {
+            _list.Remove(managed);
+        }
+    }
 }
