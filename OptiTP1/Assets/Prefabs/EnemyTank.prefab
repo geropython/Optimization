@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34496896596460500}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.87, z: 0}
+  m_LocalPosition: {x: 0, y: 1.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -257,7 +257,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9142335900739368792}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25, y: 3, z: 25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -359,6 +359,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fireRate: 2
+  timeInCurrentDirection: 0
+  maxTimeInCurrentDirection: 1
+  speed: 5
+  shootingPoint: {fileID: 8042716773923344480}
+  timeShootEnemy: 2
 --- !u!114 &9142335900739368800
 MonoBehaviour:
   m_ObjectHideFlags: 0

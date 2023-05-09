@@ -60,8 +60,9 @@ public class EnemyModel : MonoBehaviour
 
     public void EnemyDestroyed()
     {
-        // _killCounter.IncrementEnemiesKilled();
-        Destroy(this); 
+        // _killCounter.IncrementEnemiesKilled();  --> FOR UI 
+        
+        Destroy(gameObject);
         
     }
 }

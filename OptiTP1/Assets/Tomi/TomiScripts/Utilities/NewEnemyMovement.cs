@@ -15,7 +15,7 @@ public class NewEnemyMovement : MonoBehaviour
     void Update()
     {
         // Mueve el tanque en la dirección actual
-        transform.position += transform.forward * speed * Time.deltaTime;
+        transform.position += transform.forward * (speed * Time.deltaTime);
 
         // Si ha pasado suficiente tiempo en la dirección actual, cambia de dirección
         timeInCurrentDirection += Time.deltaTime;
