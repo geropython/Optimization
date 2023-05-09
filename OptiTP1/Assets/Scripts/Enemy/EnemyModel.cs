@@ -10,6 +10,7 @@ public class EnemyModel : MonoBehaviour
     public float timeInCurrentDirection = 0f;
     public float maxTimeInCurrentDirection = 1.5f;
     public float speed = 15f;
+    private EnemiesKilledCounter _killCounter;
 
     [SerializeField] private Transform shootingPoint;
     private const string BULLET_TAG = "EnemyBullet";
@@ -60,5 +61,8 @@ public class EnemyModel : MonoBehaviour
     public void EnemyDestroyed()
     {
         gameObject.SetActive(false); 
+        _killCounter.IncrementEnemiesKilled();
+       
+        
     }
 }

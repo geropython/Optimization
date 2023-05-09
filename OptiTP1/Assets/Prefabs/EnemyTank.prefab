@@ -240,10 +240,8 @@ GameObject:
   - component: {fileID: 9142335900739368805}
   - component: {fileID: 9142335900739368794}
   - component: {fileID: 9142335900739368806}
-  - component: {fileID: 9142335900739368801}
   - component: {fileID: 9142335900739368803}
   - component: {fileID: 9142335900739368800}
-  - component: {fileID: -8081235661584362645}
   m_Layer: 7
   m_Name: EnemyTank
   m_TagString: Enemy
@@ -348,23 +346,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &9142335900739368801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9142335900739368792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20be158a5657f5b4e8d9862fd0775738, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeInCurrentDirection: 0
-  maxTimeInCurrentDirection: 1
-  speed: 5
-  shootingPoint: {fileID: 9142335901573630143}
-  timeShootEnemy: 2
 --- !u!114 &9142335900739368803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e049a063d2a37429c90b1d765d58e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingPoint: {fileID: 8042716773923344480}
+  _fireRate: 2
 --- !u!114 &9142335900739368800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,23 +374,8 @@ MonoBehaviour:
   timeInCurrentDirection: 0
   maxTimeInCurrentDirection: 0.1
   speed: 25
+  shootingPoint: {fileID: 8042716773923344480}
   timeShootEnemy: 2
---- !u!114 &-8081235661584362645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9142335900739368792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6820dcd31155c474dab885947fe68e4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileManager: {fileID: 0}
-  projectileSpawnPoint: {fileID: 8042716773923344480}
-  fireRate: 1
-  projectileSpeed: 25
 --- !u!1 &9142335901573630140
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerController : ManagedUpdateBehaviourUI
+public class PlayerController : ManagedUpdateBehaviour
 {
     private PlayerModel _playerModel;
     private AmmoCounter _ammoCounter;
@@ -89,13 +89,13 @@ public class PlayerController : ManagedUpdateBehaviourUI
             // Mover al jugador al punto de respawn
            PlayerDestroyed();  
         }
-        print(collision.gameObject.tag);
+      
     }
     
     
     public void PlayerDestroyed()   
     {
         // Mover al jugador al punto de respawn
-        transform.position = GameManager.Instance.spawnPoint.position;  // Llama al spawnPoint desde el game Manager para spawnear el tanque.
+        transform.position = GameManager.Instance.SpawnPoint.position;  // Llama al spawnPoint desde el game Manager para spawnear el tanque.
     }
 }

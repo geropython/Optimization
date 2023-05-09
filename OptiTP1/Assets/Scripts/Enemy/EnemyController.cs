@@ -14,17 +14,14 @@ public class EnemyController : ManagedUpdateBehaviour
     }
     public override void UpdateMe()
     {
-        print("Disparo enemigo");
+      print("Disparo enemigo");
         ShootLogic();
         _enemyModel.EnemyMove();        
     }
 
     private void ShootLogic()
     {
-        // _lastFireTime += Time.deltaTime;
-        // if(_lastFireTime >=2f)
-        //     _enemyModel.PoolShoot(shootingPoint);
-        // _lastFireTime = 0f;   
+       
         print("Dispare"); 
         _lastFireTime += Time.deltaTime;
         if (_lastFireTime >= _fireRate)

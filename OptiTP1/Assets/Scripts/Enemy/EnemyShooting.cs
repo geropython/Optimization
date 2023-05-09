@@ -28,7 +28,7 @@ public class EnemyShooting : ManagedUpdateBehaviour
        // Projectile p = projectileManager.GetFromPool();
        var p = GameManager.Instance.ProjectilePool.GetFromPool();
        p.SetupProjectile(projectileSpawnPoint.position, projectileSpawnPoint.rotation,transform.forward,"EnemyBullet");
-       //p.Fire(transform.forward, projectileSpeed); //era el forward ajsjaj no s
+       //p.Fire(transform.forward, projectileSpeed);
     }
     
     

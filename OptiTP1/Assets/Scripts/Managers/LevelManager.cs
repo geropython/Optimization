@@ -26,4 +26,5 @@ public class LevelManager : MonoBehaviour
         Application.Quit();
         print("Exit Game");
     }
+    
 }

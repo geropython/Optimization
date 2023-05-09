@@ -4,7 +4,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject tankPrefab; // prefab del tanque
-    [SerializeField] private Transform spawnPoint; // punto de spawn del tanque
+    [SerializeField] private Transform spawnPoint;
+    public Transform SpawnPoint => spawnPoint;// punto de spawn del tanque
     
     private int _enemiesDestroyed = 0; // contador de enemigos eliminados
     public static GameManager Instance { get; private set; }
