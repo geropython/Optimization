@@ -9203,6 +9203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesKilledText: {fileID: 880619268}
+  enemiesRemainText: {fileID: 1063134443}
   ammoUsedText: {fileID: 1165105314}
   winPanel: {fileID: 1506449264}
 --- !u!1 &863199812

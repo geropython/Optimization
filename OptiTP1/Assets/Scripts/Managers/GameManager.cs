@@ -3,7 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private int _enemiesDestroyed = 95; // contador de enemigos eliminados
+    private int _enemiesDestroyed = 0; // contador de enemigos eliminados
+    private int _enemiesRemain = 100; // contador de enemigos eliminados
     private int _bulletsShot = 0; // contador de balas disparadas
 
     [SerializeField] private GameObject tankPrefab; // prefab del tanque
@@ -54,15 +55,17 @@ public class GameManager : MonoBehaviour
     public void EnemyDestroyed() //Llamar a esto cuando se destruye un enemy en Script de Enemy?¿ ---> CONSULTAR A MAXI
     {
         _enemiesDestroyed++;
+        _enemiesRemain--;
+        UIManager.UpdateEnemiesRemainText(_enemiesRemain);
         UIManager.UpdateEnemiesKilled(_enemiesDestroyed);
         if (_enemiesDestroyed >= 100) WinGame();
     }
 
-    public void AmmoCounter()
-    {
-        _bulletsShot++;
-        UIManager.UpdateAmmoUsed(_bulletsShot);
-    }
+    // public void AmmoCounter()
+    // {
+    //     _bulletsShot++;
+    //     UIManager.UpdateAmmoUsed(_bulletsShot);
+    // }
 
     private void WinGame()
     {
