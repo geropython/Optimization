@@ -5,6 +5,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI enemiesKilledText;
     [SerializeField] private TextMeshProUGUI ammoUsedText;
+    [SerializeField] private GameObject winPanel;
 
     private void Start()
     {
@@ -20,5 +21,12 @@ public class UIManager : MonoBehaviour
     public void UpdateAmmoUsed(int amount)
     {
         ammoUsedText.text = amount.ToString();
+    }
+
+    public void Win()
+    {
+        Time.timeScale = 0f; // detiene el tiempo
+        winPanel.SetActive(true); // activa el panel de victoria
+        Logging.Log("Win");
     }
 }

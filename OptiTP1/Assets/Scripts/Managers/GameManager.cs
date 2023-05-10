@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject tankPrefab; // prefab del tanque
     [SerializeField] private Transform spawnPoint;
+   
     public Transform SpawnPoint => spawnPoint; // punto de spawn del tanque
     public static GameManager Instance { get; private set; }
     public ProjectileManager ProjectilePool { get; private set; }
@@ -63,8 +64,6 @@ public class GameManager : MonoBehaviour
 
     private void WinGame()
     {
-        //PlaceHolder
-        
-        Logging.Log("Win");
+       UIManager.Win();
     }
 }

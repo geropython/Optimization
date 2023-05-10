@@ -8451,6 +8451,7 @@ GameObject:
   - component: {fileID: 788629940}
   - component: {fileID: 788629939}
   - component: {fileID: 788629938}
+  - component: {fileID: 788629941}
   m_Layer: 5
   m_Name: Back to Menu
   m_TagString: Untagged
@@ -8523,9 +8524,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: b93fe5bbea454ae438fcec241c5fa85b, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 788629941}
+        m_TargetAssemblyTypeName: WinPanel, Assembly-CSharp
+        m_MethodName: ReturnToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8573,6 +8574,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788629936}
   m_CullTransparentMesh: 1
+--- !u!114 &788629941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788629936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62330b4ce45fc33439ff5b0b570de0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &789388303
 GameObject:
   m_ObjectHideFlags: 0
@@ -9190,6 +9203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemiesKilledText: {fileID: 880619268}
   ammoUsedText: {fileID: 1165105314}
+  winPanel: {fileID: 1506449264}
 --- !u!1 &863199812
 GameObject:
   m_ObjectHideFlags: 0
