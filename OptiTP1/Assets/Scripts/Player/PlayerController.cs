@@ -65,7 +65,7 @@ public class PlayerController : ManagedUpdateBehaviour
         if (!Input.GetKey(KeyCode.Space) || !(Time.time > _lastFireTime + 1f / fireRate)) return;
         _playerModel.PoolShoot();
         _lastFireTime = Time.time;
-        _ammoCounter.IncrementBulletsShot();
+        //_ammoCounter.IncrementBulletsShot();  //NULL REFERENCE ?¿
     }
 
     //Colisión con el Enemy y muerte.

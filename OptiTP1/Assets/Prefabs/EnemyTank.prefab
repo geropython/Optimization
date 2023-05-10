@@ -361,7 +361,7 @@ MonoBehaviour:
   fireRate: 2
   timeInCurrentDirection: 0
   maxTimeInCurrentDirection: 1
-  speed: 15
+  speed: 20
 --- !u!114 &9142335900739368800
 MonoBehaviour:
   m_ObjectHideFlags: 0
