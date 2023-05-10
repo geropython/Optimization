@@ -5,7 +5,6 @@ public class PlayerController : ManagedUpdateBehaviour
     // El tiempo en el que se disparó la última bala
     private float _lastFireTime;
     private PlayerModel _playerModel;
-    private AmmoCounter _ammoCounter;
     private Vector3 _direction = Vector3.zero;
     private bool _prevStatusV;
     private bool _prevStatusH;
@@ -25,7 +24,6 @@ public class PlayerController : ManagedUpdateBehaviour
     private void Awake()
     {
         _playerModel = GetComponent<PlayerModel>();
-        _ammoCounter = GetComponent<AmmoCounter>();
     }
 
     public override void UpdateMe()
@@ -65,7 +63,6 @@ public class PlayerController : ManagedUpdateBehaviour
         if (!Input.GetKey(KeyCode.Space) || !(Time.time > _lastFireTime + 1f / fireRate)) return;
         _playerModel.PoolShoot();
         _lastFireTime = Time.time;
-        //_ammoCounter.IncrementBulletsShot();  //NULL REFERENCE ?¿
     }
 
     //Colisión con el Enemy y muerte.

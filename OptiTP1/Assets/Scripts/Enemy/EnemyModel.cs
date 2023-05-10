@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyModel : MonoBehaviour
+public class EnemyModel : MonoBehaviour, IPoolableObject
 {
     [SerializeField] private Transform shootingPoint;
     private UIManager _killCounter;
@@ -43,5 +43,20 @@ public class EnemyModel : MonoBehaviour
         GameManager.Instance.EnemyDestroyed();
         GameManager.Instance.CustomGameplayUpdate.RemoveFromList(gameObject.GetComponent<EnemyController>());
         Destroy(gameObject);
+    }
+
+    public void Deactivate()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void Initialization()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void Destroy()
+    {
+        EnemyDestroyed();
     }
 }

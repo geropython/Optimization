@@ -29,4 +29,6 @@ public class EnemySpawner : CustomUpdateManager
             yield return new WaitForSeconds(spawnInterval);
         }
     }
+
+    // Agregar EnemyManager como pool para que no spawneen infinitos a la vez
 }
