@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CustomUpdateManager : MonoBehaviour
 {
-    private List<ManagedUpdateBehaviour> _list;
+    private static List<ManagedUpdateBehaviour> _list;
 
     // No se si utilizar variables constantes cuenta como Hashing ya que no es una tabla
     private const float FRAME_TIME_60 = 0.01666f;
@@ -47,7 +47,7 @@ public class CustomUpdateManager : MonoBehaviour
         if (_list.Contains(managed)) _list.Remove(managed);
     }
 
-    public void ClearList()
+    public static void ClearList()
     {
         _list.Clear();
     }
