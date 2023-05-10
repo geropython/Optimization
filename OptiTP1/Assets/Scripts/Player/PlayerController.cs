@@ -28,7 +28,6 @@ public class PlayerController : ManagedUpdateBehaviour
         _ammoCounter = GetComponent<AmmoCounter>();
     }
 
-
     public override void UpdateMe()
     {
         MoveLogic();
@@ -74,14 +73,6 @@ public class PlayerController : ManagedUpdateBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
             // Mover al jugador al punto de respawn
-            PlayerDestroyed();
-    }
-
-    public void PlayerDestroyed()
-    {
-        // Mover al jugador al punto de respawn
-        transform.position =
-            GameManager.Instance.SpawnPoint
-                .position; // Llama al spawnPoint desde el game Manager para spawnear el tanque.
+            _playerModel.Respawn();
     }
 }

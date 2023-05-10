@@ -29,5 +29,6 @@ public class PlayerModel : MonoBehaviour
 
     public void Respawn()
     {
+        transform.position = GameManager.Instance.SpawnPoint.position;
     }
 }
