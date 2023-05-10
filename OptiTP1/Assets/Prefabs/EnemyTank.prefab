@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e049a063d2a37429c90b1d765d58e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 1
+  fireRate: 0.9
   maxTimeInCurrentDirection: 1
   maxWaitTime: 0.6
   speed: 15
@@ -345,3 +345,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 7140967849206089950}
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 959

@@ -39,4 +39,9 @@ public class CustomUpdateManagerUI : MonoBehaviour
     {
         if (_list.Contains(managed)) _list.Remove(managed);
     }
+
+    public void ClearList()
+    {
+        _list.Clear();
+    }
 }
