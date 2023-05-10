@@ -3,15 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private int _enemiesDestroyed = 0; // contador de enemigos eliminados
+    private int _enemiesDestroyed = 98; // contador de enemigos eliminados
     private int _enemiesRemain = 100; // contador de enemigos eliminados
-    private int _bulletsShot = 0; // contador de balas disparadas
-
+    
     [SerializeField] private GameObject tankPrefab; // prefab del tanque
     [SerializeField] private Transform spawnPoint;
    
     public Transform SpawnPoint => spawnPoint; // punto de spawn del tanque
-    public static GameManager Instance { get; private set; }
+     public static GameManager Instance { get; private set; }
     public ProjectileManager ProjectilePool { get; private set; }
     public CustomUpdateManager CustomGameplayUpdate { get; private set; }
     public CustomUpdateManagerUI CustomUIUpdate { get; private set; }
@@ -32,7 +31,6 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-
         SpawnTank();
         ProjectilePool = GetComponent<ProjectileManager>();
         CustomGameplayUpdate = GetComponent<CustomUpdateManager>();
@@ -52,7 +50,7 @@ public class GameManager : MonoBehaviour
         Instantiate(tankPrefab, spawnPoint.position, Quaternion.identity);
     }
 
-    public void EnemyDestroyed() //Llamar a esto cuando se destruye un enemy en Script de Enemy?¿ ---> CONSULTAR A MAXI
+    public void EnemyDestroyed() 
     {
         _enemiesDestroyed++;
         _enemiesRemain--;
@@ -61,19 +59,10 @@ public class GameManager : MonoBehaviour
         if (_enemiesDestroyed >= 100) WinGame();
     }
 
-    // public void AmmoCounter()
-    // {
-    //     _bulletsShot++;
-    //     UIManager.UpdateAmmoUsed(_bulletsShot);
-    // }
 
     private void WinGame()
     {
        UIManager.Win();
     }
 
-    public void RestartGameLoop()
-    {
-        
-    }
 }

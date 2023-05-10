@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class PlayerController : ManagedUpdateBehaviour
 {
     // El tiempo en el que se disparó la última bala

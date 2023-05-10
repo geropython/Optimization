@@ -5,6 +5,7 @@ public class EnemyModel : MonoBehaviour, IPoolableObject
     [SerializeField] private Transform shootingPoint;
     private UIManager _killCounter;
     private const string BULLET_TAG = "EnemyBullet";
+    
 
     public void EnemyMove(Vector3 dir)
     {

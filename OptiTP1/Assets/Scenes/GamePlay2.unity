@@ -9149,7 +9149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tankPrefab: {fileID: 182117161012643223, guid: 98b781d7bc2465a4ab3acb0cff3afd08, type: 3}
-  spawnPoint: {fileID: 803492527}
+  spawnPoint: {fileID: 841057374}
 --- !u!4 &841057374
 Transform:
   m_ObjectHideFlags: 0
