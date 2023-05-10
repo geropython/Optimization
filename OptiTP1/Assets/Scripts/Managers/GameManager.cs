@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public CustomUpdateManagerUI CustomUIUpdate { get; private set; }
     public UIManager UIManager { get; private set; }
 
+    
+    //SINGLETON-------------------------
     private void Awake()
     {
         // Si ya hay otra instancia, destruye ésta.
@@ -65,5 +67,10 @@ public class GameManager : MonoBehaviour
     private void WinGame()
     {
        UIManager.Win();
+    }
+
+    public void RestartGameLoop()
+    {
+        
     }
 }
