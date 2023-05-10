@@ -4,17 +4,18 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    
     public void StartGame()
     {
         SceneManager.LoadScene(2);
+        Time.timeScale = 1f; // reanuda el tiempo
        
     }
-
     public void MainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
+        
     }
-    
     
     public void QuitGame()
     {

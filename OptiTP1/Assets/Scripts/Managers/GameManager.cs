@@ -65,4 +65,10 @@ public class GameManager : MonoBehaviour
        UIManager.Win();
     }
 
+    public void ResetGameLoop()
+    {
+       //Acá iria el método de Clear List de CustomUpdate de MAxi ?¿
+       
+    }
+
 }

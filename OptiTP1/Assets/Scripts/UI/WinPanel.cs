@@ -9,7 +9,7 @@ public class WinPanel : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("MainMenu"); // carga la escena del menú principal
-        Time.timeScale = 1f; // reanuda el tiempo
+        
     }
     
 
