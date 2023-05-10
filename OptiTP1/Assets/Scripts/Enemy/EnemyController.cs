@@ -14,6 +14,7 @@ public class EnemyController : ManagedUpdateBehaviour
     private void Awake()
     {
         _enemyModel = GetComponent<EnemyModel>();
+        _enemyModel.ChangeDirection();
     }
 
     public override void UpdateMe()
