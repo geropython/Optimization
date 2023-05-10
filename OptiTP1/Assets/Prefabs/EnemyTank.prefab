@@ -107,7 +107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4524509936211662941}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.125, z: 0.725}
+  m_LocalPosition: {x: 0, y: 0.125, z: 0.975}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -329,8 +329,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0.9
-  maxTimeInCurrentDirection: 1
-  maxWaitTime: 0.6
+  maxTimeInCurrentDirection: 2.4
+  maxWaitTime: 1.2
   speed: 15
 --- !u!114 &9142335900739368800
 MonoBehaviour:
@@ -347,4 +347,4 @@ MonoBehaviour:
   shootingPoint: {fileID: 7140967849206089950}
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 959
+    m_Bits: 64

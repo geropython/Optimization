@@ -22,6 +22,7 @@ public class EnemyController : ManagedUpdateBehaviour
         ShootLogic();
         MoveLogic();
         ChangeForwardDirection();
+        _enemyModel.ConfirmForward();
     }
 
     private void ShootLogic()
@@ -39,11 +40,11 @@ public class EnemyController : ManagedUpdateBehaviour
         // Destruye al Enemy al colisionar con el Player.
         if (collision.gameObject.CompareTag("Player")) _enemyModel.EnemyDestroyed();
 
-        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy"))
-        {
-            _enemyModel.ChangeDirection();
-            _waitedToMove = 0f;
-        }
+        // if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy"))
+        // {
+        //     _enemyModel.ChangeDirection();
+        //     _waitedToMove = 0f;
+        // }
     }
 
     private void MoveLogic()
