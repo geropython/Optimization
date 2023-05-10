@@ -329,9 +329,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 1
-  maxTimeInCurrentDirection: 1.2
+  maxTimeInCurrentDirection: 1
   maxWaitTime: 0.6
-  speed: 20
+  speed: 15
 --- !u!114 &9142335900739368800
 MonoBehaviour:
   m_ObjectHideFlags: 0

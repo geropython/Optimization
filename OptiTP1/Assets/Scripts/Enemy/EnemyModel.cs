@@ -34,12 +34,12 @@ public class EnemyModel : MonoBehaviour, IPoolableObject
     public void PoolShoot()
     {
         var bullet = GameManager.Instance.ProjectilePool.GetFromPool();
+
         bullet.SetupProjectile(shootingPoint.position, shootingPoint.rotation, shootingPoint.forward, BULLET_TAG);
     }
 
     public void EnemyDestroyed()
     {
-        Logging.Log("dai");
         GameManager.Instance.EnemyDestroyed();
         GameManager.Instance.CustomGameplayUpdate.RemoveFromList(gameObject.GetComponent<EnemyController>());
         Destroy(gameObject);

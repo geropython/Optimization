@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private int _enemiesDestroyed = 0; // contador de enemigos eliminados
+    private int _enemiesDestroyed = 95; // contador de enemigos eliminados
     private int _bulletsShot = 0; // contador de balas disparadas
 
     [SerializeField] private GameObject tankPrefab; // prefab del tanque
@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
     private void WinGame()
     {
         //PlaceHolder
+        
         Logging.Log("Win");
     }
 }

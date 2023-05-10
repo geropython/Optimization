@@ -21696,7 +21696,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 1071696673}
   - {fileID: 1221730746}
-  spawnInterval: 7
+  spawnInterval: 5
 --- !u!1 &2133751432
 GameObject:
   m_ObjectHideFlags: 0
