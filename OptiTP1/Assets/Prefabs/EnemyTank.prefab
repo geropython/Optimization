@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &34496896596460500
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8042716773923344480}
-  m_Layer: 7
-  m_Name: ShootingPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8042716773923344480
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34496896596460500}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.86, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8848929676831405408}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3374023039439139771
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,6 +97,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: -0.0000019073486, y: 0, z: -0.0000019073486}
+--- !u!1 &4524509936211662941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7140967849206089950}
+  m_Layer: 7
+  m_Name: ShootingPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7140967849206089950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4524509936211662941}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.125, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9142335900739368807}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6700853888559859227
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,15 +154,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6700853888559859227}
-  m_LocalRotation: {x: 0.70710576, y: -0, z: -0, w: 0.7071079}
-  m_LocalPosition: {x: -0, y: 0.08, z: 0.83}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: -0.00000020141482, y: 0.080000624, z: 0.83}
   m_LocalScale: {x: 0.52, y: 0.38, z: 0.52}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8042716773923344480}
+  m_Children: []
   m_Father: {fileID: 9142335900739368807}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!33 &6924589173157871660
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -264,6 +263,7 @@ Transform:
   - {fileID: 8848929676831405408}
   - {fileID: 9142335901573630143}
   - {fileID: 5672012635340171794}
+  - {fileID: 7140967849206089950}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -341,7 +341,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
@@ -358,12 +358,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e049a063d2a37429c90b1d765d58e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fireRate: 2
+  fireRate: 2
   timeInCurrentDirection: 0
   maxTimeInCurrentDirection: 1
-  speed: 5
-  shootingPoint: {fileID: 8042716773923344480}
-  timeShootEnemy: 2
+  speed: 15
 --- !u!114 &9142335900739368800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,11 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e4851a9220cd44a90944b96d649966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeInCurrentDirection: 0
-  maxTimeInCurrentDirection: 0.1
-  speed: 25
-  shootingPoint: {fileID: 8042716773923344480}
-  timeShootEnemy: 2
+  shootingPoint: {fileID: 7140967849206089950}
 --- !u!1 &9142335901573630140
 GameObject:
   m_ObjectHideFlags: 0

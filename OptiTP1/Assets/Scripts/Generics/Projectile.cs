@@ -30,12 +30,14 @@ public class Projectile : MonoBehaviour, IPoolableObject
         {
             _isPlayerBullet = true;
             gameObject.tag = ownerTag;
+            gameObject.layer = 8;
         }
 
         if (ownerTag == "EnemyBullet")
         {
             _isPlayerBullet = false;
             gameObject.tag = ownerTag;
+            gameObject.layer = 9;
         }
 
         transform.SetPositionAndRotation(pos, rot);
@@ -52,11 +54,7 @@ public class Projectile : MonoBehaviour, IPoolableObject
     {
         if (_isPlayerBullet)
         {
-            if (other.CompareTag("Enemy"))
-            {
-                GameManager.Instance.EnemyDestroyed();
-                other.gameObject.GetComponent<EnemyModel>().EnemyDestroyed();
-            }
+            if (other.CompareTag("Enemy")) other.gameObject.GetComponent<EnemyModel>().EnemyDestroyed();
         }
         else
         {

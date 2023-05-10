@@ -2,31 +2,19 @@ using UnityEngine;
 
 public class EnemyModel : MonoBehaviour
 {
-    [SerializeField] private float timeInCurrentDirection = 0f;
-    [SerializeField] private float maxTimeInCurrentDirection = 1.5f;
-    [SerializeField] private float speed = 15f;
     [SerializeField] private Transform shootingPoint;
-    private EnemiesKilledCounter _killCounter;
+    private UIManager _killCounter;
     private const string BULLET_TAG = "EnemyBullet";
 
-    public void EnemyMove()
+    public void EnemyMove(Vector3 dir)
     {
-        transform.position += transform.forward * (speed * Time.deltaTime);
-
-        // Si ha pasado suficiente tiempo en la direcci�n actual, cambia de direcci�n
-        timeInCurrentDirection += Time.deltaTime;
-        if (timeInCurrentDirection > maxTimeInCurrentDirection)
-        {
-            timeInCurrentDirection = 0f;
-            ChangeDirection();
-        }
+        transform.position += dir;
     }
 
     public void ChangeDirection()
     {
-        // Cambia la direcci�n aleatoriamente
-        var randomDirection = Random.Range(0, 4);
-        switch (randomDirection)
+        // Cambia la dirección aleatoriamente
+        switch (Random.Range(0, 4))
         {
             case 0:
                 transform.rotation = Quaternion.Euler(0f, 0f, 0f);
@@ -51,7 +39,9 @@ public class EnemyModel : MonoBehaviour
 
     public void EnemyDestroyed()
     {
-        // _killCounter.IncrementEnemiesKilled();  --> FOR UI 
+        Logging.Log("dai");
+        GameManager.Instance.EnemyDestroyed();
+        GameManager.Instance.CustomGameplayUpdate.RemoveFromList(gameObject.GetComponent<EnemyController>());
         Destroy(gameObject);
     }
 }

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public ProjectileManager ProjectilePool { get; private set; }
     public CustomUpdateManager CustomGameplayUpdate { get; private set; }
     public CustomUpdateManagerUI CustomUIUpdate { get; private set; }
+    public UIManager UIManager { get; private set; }
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
         ProjectilePool = GetComponent<ProjectileManager>();
         CustomGameplayUpdate = GetComponent<CustomUpdateManager>();
         CustomUIUpdate = GetComponent<CustomUpdateManagerUI>();
+        UIManager = GetComponent<UIManager>();
     }
 
     private void Start()
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
     public void EnemyDestroyed() //Llamar a esto cuando se destruye un enemy en Script de Enemy?¿ ---> CONSULTAR A MAXI
     {
         _enemiesDestroyed++;
+        UIManager.IncrementEnemiesKilled(_enemiesDestroyed);
         if (_enemiesDestroyed >= 100) WinGame();
     }
 

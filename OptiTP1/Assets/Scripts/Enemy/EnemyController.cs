@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class EnemyController : ManagedUpdateBehaviour
 {
-    private const string BULLET_TAG = "EnemyBullet";
     private EnemyModel _enemyModel;
     private float _lastFireTime;
     [SerializeField] private float fireRate = 2f;
-    [SerializeField] private Transform shootingPoint;
     [SerializeField] private float timeInCurrentDirection = 0f;
     [SerializeField] private float maxTimeInCurrentDirection = 1f;
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float timeShootEnemy = 2f;
 
     private void Awake()
     {
@@ -20,7 +17,8 @@ public class EnemyController : ManagedUpdateBehaviour
     public override void UpdateMe()
     {
         ShootLogic();
-        NewMovement();
+        MoveLogic();
+        ChangeForwardDirection();
     }
 
     private void ShootLogic()
@@ -35,52 +33,26 @@ public class EnemyController : ManagedUpdateBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // Destruye al Enemy al colisionar con el Player.
-            _enemyModel.EnemyDestroyed();
-            GameManager.Instance.CustomGameplayUpdate.RemoveFromList(this);
-        }
+        // Destruye al Enemy al colisionar con el Player.
+        if (collision.gameObject.CompareTag("Player")) _enemyModel.EnemyDestroyed();
 
-        if (collision.gameObject.CompareTag("Wall")) ChangeDirection();
+        if (collision.gameObject.CompareTag("Wall")) _enemyModel.ChangeDirection();
     }
 
-    private void NewMovement()
+    private void MoveLogic()
     {
         // Mueve el tanque en la dirección actual
-        transform.position += transform.forward * (speed * Time.deltaTime);
+        _enemyModel.EnemyMove(transform.forward * (speed * Time.deltaTime));
+    }
 
+    private void ChangeForwardDirection()
+    {
         // Si ha pasado suficiente tiempo en la dirección actual, cambia de dirección
         timeInCurrentDirection += Time.deltaTime;
         if (timeInCurrentDirection > maxTimeInCurrentDirection)
         {
             timeInCurrentDirection = 0f;
-            ChangeDirection();
-        }
-
-        timeShootEnemy -= Time.deltaTime;
-        if (0f >= timeShootEnemy)
-            //Fire();
-            timeShootEnemy = 2f;
-    }
-
-    public void ChangeDirection()
-    {
-        // Cambia la dirección aleatoriamente
-        switch (Random.Range(0, 4))
-        {
-            case 0:
-                transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                break;
-            case 1:
-                transform.rotation = Quaternion.Euler(0f, 90f, 0f);
-                break;
-            case 2:
-                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-                break;
-            case 3:
-                transform.rotation = Quaternion.Euler(0f, 270f, 0f);
-                break;
+            _enemyModel.ChangeDirection();
         }
     }
 }
