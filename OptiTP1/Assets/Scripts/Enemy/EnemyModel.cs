@@ -39,7 +39,7 @@ public class EnemyModel : MonoBehaviour, IPoolableObject
     }
 
     public void ConfirmForward()
-    {
+    {//Non Alloc API recomendacion cambiarlo por otro tipo de NonAlloc
         Array.Clear(_resultBuffer, 0, _resultBuffer.Length);
         if (Physics.RaycastNonAlloc(shootingPoint.position, shootingPoint.forward, _resultBuffer, RAY_DISTANCE,
                 obstacleMask) <=

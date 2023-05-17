@@ -6,7 +6,7 @@ public class CustomUpdateManager : MonoBehaviour
 {
     private static List<ManagedUpdateBehaviour> _list;
 
-    // No se si utilizar variables constantes cuenta como Hashing ya que no es una tabla
+    //No es hashing debido a que no constituye una tabla de valores.
     private const float FRAME_TIME_60 = 0.01666f;
     private const int FRAME_TARGET = 60;
     private float _tempTime;

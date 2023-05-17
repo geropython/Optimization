@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Cambiar para utilizar ObjectPool
 public class EnemySpawner : CustomUpdateManager
 {
     [SerializeField] private ManagedUpdateBehaviour enemyPrefab; // prefab del enemigo
@@ -11,7 +11,7 @@ public class EnemySpawner : CustomUpdateManager
 
     private void Start()
     {
-        StartCoroutine(SpawnEnemies()); // expensive?¿ Non Alloc method?¿
+        StartCoroutine(SpawnEnemies());
     }
 
     private IEnumerator SpawnEnemies()

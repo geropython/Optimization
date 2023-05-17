@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Pool;
 
-// Esto es precomputation??¿¿ 
+//Precomputation
+//Utiliza ObjectPool, ir a waveSpawner
 public class ProjectileManager : MonoBehaviour
 {
     private IObjectPool<Projectile> _projectilePool;
@@ -23,7 +24,7 @@ public class ProjectileManager : MonoBehaviour
             10,
             10);
     }
-
+    
     public Projectile GetFromPool()
     {
         return _projectilePool.Get();
